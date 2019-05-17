@@ -1,0 +1,48 @@
+#main_section {
+	margin:3rem 11.5rem 6rem 8.5rem;	
+}
+
+#projet_add {
+	width:100%;
+	border-radius:20px;
+	height:60px;
+	@include font-size('h3');
+	background-color:$gris-lighter;
+	transition:background-color .3s ease;
+	
+	span {
+		position:relative;
+		padding-right:3.1rem;
+		
+		&:after,&:before {
+			content:' ';
+			display:inline-block;
+			background-color:$gris-stronger;
+			border:0;
+			position:absolute;
+			right:0;
+			top:50%;
+			transition-duration:.3s;
+			transition-timing-function:ease;
+			transition-property:background-color;
+		}
+
+		&:after {
+			width:16px;
+			height:1px;
+		}
+
+		&:before {
+			width:1px;
+			height:16px;
+			margin-top:-8px;
+			margin-right:7px;
+		}
+	}
+	
+	&:hover,&:focus {
+		background-color:$jaune;
+	}
+}
+
+

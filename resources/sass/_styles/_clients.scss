@@ -1,0 +1,142 @@
+/* Disposition au sein du aside */
+#clients {
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+	align-items:stretch;
+	
+	#client_list {
+		flex-grow:1;
+		flex-shrink:1;
+	}
+	
+	#client_add {
+		//align-self:flex-end;
+		min-height:6rem;
+	}
+}
+
+
+#client_search {
+	padding:3rem;
+	border:1px solid $gris-stronger;
+	min-height:16.2rem;
+	
+	input[type=text] {
+		box-shadow:none;
+		padding:11px 16px;
+		border-radius:20px;
+		width:100%;
+		display:block;
+	}
+}
+
+#client_list {
+	list-style:none;
+	display:block;
+	padding:0;
+	margin-bottom:0;
+	
+	.client_item {
+		display:block;
+		
+		a {
+			display:block;
+			padding:24px 16px 18px;
+			position:relative;
+			
+			&:after, &:before {
+				display:block;
+				content:' ';
+				position:absolute;
+				top:50%;				
+				right:calc(50% + 1.5rem);
+				opacity:0;
+				transition:right .3s ease,opacity .3s ease;
+			}
+			
+			&:before {
+				width:26px;
+				height:1px;
+				background-color:$gris-stronger;
+				border:0;
+
+			}
+			
+			&:after {
+				width:9px;
+				height:9px;
+				transform:rotate(-45deg);
+				border-style:solid;
+				border-color:$gris-stronger;
+				border-width:0;
+				border-right-width:1px;
+				border-bottom-width:1px;
+				margin-top:-4px;
+			}
+			
+			&:hover {
+				text-decoration:none;
+				
+				&:after,&:before {
+					right:1.5rem;
+					opacity:1;
+				}
+			}
+		}
+		
+		&:nth-child(odd) {
+			background-color:rgba(0,0,0,0.05);
+		}
+	}
+	
+}
+
+#client_add {
+	box-shadow:none;
+	border:1px solid $gris-stronger;
+	background-color:$jaune;
+	font-weight:$weight-bold;
+	text-align:left;
+	width:100%;
+	padding:21px 15px;
+	position:relative;
+	transition-duration:.3s;
+	transition-timing-function:ease;
+	transition-property:background-color,color,border-color;
+	
+	&:after,&:before {
+		content:' ';
+		display:block;
+		background-color:$gris-stronger;
+		border:0;
+		position:absolute;
+		right:1.5rem;
+		top:50%;
+		transition-duration:.3s;
+		transition-timing-function:ease;
+		transition-property:background-color;
+	}
+	
+	&:after {
+		width:16px;
+		height:1px;
+	}
+	
+	&:before {
+		width:1px;
+		height:16px;
+		margin-top:-8px;
+		margin-right:7px;
+	}
+	
+	&:hover,&:focus {
+		color:$jaune;
+		border-bottom-color:$jaune;
+		background-color:$gris-stronger;
+		
+		&:after,&:before {
+			background-color:$jaune;
+		}
+	}
+}

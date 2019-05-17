@@ -1,0 +1,20 @@
+/*
+ * Gestionnaire de Maintenance
+ * par alteriade
+ */
+
+// Variables du projet
+@import "_config/_variables.scss";
+
+// Import KNACSS
+@import '_knacss/_knacss.scss';
+
+// Add project stylesheets
+// - core
+@import '_styles/_global.scss';
+
+// - partials
+@import '_styles/_clients.scss';
+@import '_styles/_main-section.scss';
+@import '_styles/_blocs.scss';
+@import '_styles/_tags.scss';

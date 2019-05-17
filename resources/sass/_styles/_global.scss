@@ -1,0 +1,65 @@
+/* Disposition des éléments */
+
+body {
+	height:100vh;
+}
+
+main {
+	height:calc(100vh - 5rem);
+	display:flex;
+	flex-direction:row-reverse;
+	justify-content:flex-end;
+	align-items:stretch;
+}
+
+aside#clients {
+	background-color:$jaune;
+	width:30rem;
+}
+
+section#main_section {
+	width:calc(100% - 30rem);
+}
+
+#client_list, #main_section {	
+	overflow-y:scroll;
+}
+
+footer {
+	height:5rem;
+	margin:0;
+	display:flex;
+	color:$white;
+	background-color:$gris-stronger;
+	align-items:center;
+	justify-content:center;
+	
+	
+	a,a:hover,a:focus {
+		color:$white;
+	}
+}
+
+
+/* Headings */
+
+h1, h2, h3, h4, h5, h6,
+.h1-like, .h2-like, .h3-like, .h4-like, .h5-like, .h6-like {
+	font-weight:$weight-regular;
+}
+
+h1 strong, .h1-like strong {
+	font-weight:$weight-black;
+}
+
+h2, .h2-like {
+	margin-top:5rem;
+	
+	&:first-child {
+		margin-top:0;
+	}
+	
+	strong {
+		font-weight:$weight-bold;
+	}
+}

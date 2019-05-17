@@ -1,0 +1,21 @@
+.tag {
+
+	height:33px;
+	min-width:33px;
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	border-radius:calc(33px/2);
+	background-color:$gris-stronger;
+	color:$white;
+	
+	float:right;
+	margin-left:1.5rem;
+}
+
+.bloc_tags {
+	
+	.bloc_tag.tag {
+		float:none;
+	}
+}
