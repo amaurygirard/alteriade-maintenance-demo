@@ -10,7 +10,7 @@
 
   @if (count($clients) < 1)
 
-    Aucun client n'a été trouvé
+    <ul id="client_list"><li class="client_item"><div class="pam txtcenter">Aucun client n'a été trouvé</div></li></ul>
 
   @else
 
