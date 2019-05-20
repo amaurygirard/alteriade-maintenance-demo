@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Client;
+use App\Projet;
 
 class ClientController extends Controller
 {
@@ -16,7 +17,14 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return view('client.single', ['client' => Client::findOrFail($id)]);
+
+        $client = Client::findOrFail($id);
+
+        return view('client.single',
+        [
+          'client' => $client,
+          'projets' => Projet::where('client_id',intval($id))->get(),
+        ]);
     }
 
     /**
