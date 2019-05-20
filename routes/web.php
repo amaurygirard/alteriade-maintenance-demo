@@ -27,6 +27,11 @@ Route::prefix('ajax')->group(function(){
     return view('forms.client_add');
   })->name('ajax_add_client'); // le name permet de générer l'url depuis la vue avec route('ajax_add_client')
 
+  // Formulaire de création d'un projet
+  Route::get('/projet_add/{client_id}', function($client_id){
+    return view('forms.projet_add',['client_id' => $client_id]);
+  })->name('ajax_add_projet'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
+
 });
 
 /*
@@ -38,5 +43,17 @@ Route::prefix('client')->group(function(){
   Route::post('/create', 'ClientController@create');
 
   Route::get('/{id}', 'ClientController@show')->name('client_single');
+
+});
+
+/*
+ * Groupe de routes relatives au projet
+ */
+Route::prefix('projet')->group(function(){
+
+  // Création d'un nouveau client
+  Route::post('/create', 'ProjetController@create');
+
+  Route::get('/{id}', 'ProjetController@show')->name('projet_single');
 
 });
