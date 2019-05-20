@@ -37,6 +37,6 @@ Route::prefix('client')->group(function(){
   // Création d'un nouveau client
   Route::post('/create', 'ClientController@create');
 
-  Route::get('/{id}', 'ClientController@show');
+  Route::get('/{id}', 'ClientController@show')->name('client_single');
 
 });

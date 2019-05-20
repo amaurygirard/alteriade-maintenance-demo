@@ -17,7 +17,7 @@
     <ul id="client_list">
 
       @foreach ($clients as $client)
-        <li class="client_item"><a href="#">{{ $client->name }}</a></li>
+        <li class="client_item"><a href="{{route('client_single', ['id' => $client->id])}}">{{ $client->name }}</a></li>
       @endforeach
 
     </ul>
