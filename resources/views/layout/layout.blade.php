@@ -13,7 +13,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
 	<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 	<script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
-	
+
 </head>
 
 <body>
@@ -22,13 +22,17 @@
 
 		<section id="main_section">
 
-			<div class="tag">LM</div>
-			<div class="tag">JR</div>
+			@section('main_section_tags')
+			@show
 
-			<h1><a href="#">Home</a> | <strong>Nom du projet</strong></h1>
+			<h1>
+				@section('main_section_breadcrumb')
+					<a href="/">Home</a>
+				@show
+			</h1>
 
-			<button id="projet_add"><span>Ajouter un nouveau projet</span></button>
-
+			@section('main_section_add_button')
+			@show
 
 
 			<h2><strong>Contrats bientôt expirés</strong></h2>
