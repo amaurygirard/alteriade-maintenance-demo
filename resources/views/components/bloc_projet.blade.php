@@ -4,7 +4,7 @@
 
     <div class="bloc_header_container">
 
-      <h3><strong><a href="#">{{ $projet->name }}</a></strong></h3>
+      <h3><strong><a href="{{ route('projet_single', ['id' => $projet->id]) }}">{{ $projet->name }}</a></strong></h3>
 
       <div class="bloc_tags">
         <div class="bloc_tag tag">LM</div>
