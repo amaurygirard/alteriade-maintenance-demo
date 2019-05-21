@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Client;
 use App\Projet;
+use App\Contrat;
 
 class ClientController extends Controller
 {
@@ -19,11 +20,20 @@ class ClientController extends Controller
     {
 
         $client = Client::findOrFail($id);
+        $projets = Projet::where('client_id',intval($id))->get();
+        $contrats = [];
+
+        foreach($projets as $projet) {
+
+          $contrats[$projet->id] = Contrat::where('projet_id',intval($projet->id))->get();
+
+        }
 
         return view('client.single',
         [
           'client' => $client,
-          'projets' => Projet::where('client_id',intval($id))->get(),
+          'projets' => $projets,
+          'contrats' => $contrats,
         ]);
     }
 

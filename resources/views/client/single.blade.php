@@ -19,6 +19,13 @@
 
   <h2><strong>Tous les projets</strong></h2>
 
-  @each('components.bloc_projet', $projets, 'projet')
+  @foreach ($projets as $projet)
+    @component('components.bloc_projet', ['projet' => $projet, 'contrats' => $contrats[$projet->id]])
+    @endcomponent
+  @endforeach
+
+  @if ($projets->count() < 1)
+    <p>Aucun projet n'a été trouvé pour ce client.</p>
+  @endif
 
 @endsection

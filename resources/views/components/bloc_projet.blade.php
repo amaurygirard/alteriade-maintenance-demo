@@ -15,25 +15,64 @@
 
   </div>
 
-  <div class="bloc_details bloc_marked bloc_warning">
+  @foreach ($contrats as $contrat)
 
-    <p class="bloc_details_main bloc_details_pictoed pictoed_calendar">
+    @php
 
-      <span><strong>Lorem ipsum dolor.</strong></span>
-      <span>
-        <span class="txtright">Date de début du contrat</span>
-        <span class="bloc_details_countdown txtright">Temps restant</span>
-      </span>
+      $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $contrat->start_date);
 
-    </p>
+      if($contrat->type == 'annuel') {
+          // Picto
+          $picto = 'pictoed_calendar';
 
-    <p class="bloc_details_below">
+          // Date de fin
+          $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', $contrat->end_date);
+          $now =  new \DateTime();
 
-      <span>Dernière intervention</span>
-      <span>le : Date</span>
+          if( $endDate->getTimestamp() < $now->getTimestamp() ) {
+            $warning = ' bloc_warning';
+          }
+          else {
+            $warning = '';
+          }
 
-    </p>
+      }
+      else {
+          // Picto
+          $picto = 'pictoed_clock';
+          $warning = '';
 
-  </div>
+      }
+
+    @endphp
+
+    <div class="bloc_details bloc_marked{{ $warning }}">
+
+      <p class="bloc_details_main bloc_details_pictoed {{ $picto }}">
+
+        <span><strong>{{ $contrat->name }}</strong></span>
+        <span>
+          <span class="txtright">Date de début du contrat : {{ $startDate->format('d/m/Y') }}</span>
+          <span class="bloc_details_countdown txtright">Temps restant</span>
+        </span>
+
+      </p>
+
+      <p class="bloc_details_below">
+
+        <span>Dernière intervention</span>
+        <span>le : Date</span>
+
+      </p>
+
+    </div>
+
+  @endforeach
+
+  @if (count($contrats) < 1)
+    <div class="bloc_details">
+      <p class="bloc_details_main">Aucun contrat de maintenance n'a été trouvé pour ce projet.</p>
+    </div>
+  @endif
 
 </article>
