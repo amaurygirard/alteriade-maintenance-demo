@@ -32,6 +32,11 @@ Route::prefix('ajax')->group(function(){
     return view('forms.projet_add',['client_id' => $client_id]);
   })->name('ajax_add_projet'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
 
+  // Formulaire de création d'un contrat
+  Route::get('/contrat_add/{projet_id}', function($projet_id){
+    return view('forms.contrat_add',['projet_id' => $projet_id]);
+  })->name('ajax_add_contrat'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
+
 });
 
 /*
@@ -55,5 +60,17 @@ Route::prefix('projet')->group(function(){
   Route::post('/create', 'ProjetController@create');
 
   Route::get('/{id}', 'ProjetController@show')->name('projet_single');
+
+});
+
+/*
+ * Groupe de routes relatives au contrat
+ */
+Route::prefix('contrat')->group(function(){
+
+  // Création d'un nouveau client
+  Route::post('/create', 'ContratController@create');
+
+  Route::get('/{id}', 'ContratController@show')->name('contrat_single');
 
 });
