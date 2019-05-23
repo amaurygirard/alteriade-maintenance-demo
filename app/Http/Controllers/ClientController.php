@@ -25,7 +25,8 @@ class ClientController extends Controller
 
         foreach($projets as $projet) {
 
-          $contrats[$projet->id] = Contrat::where('projet_id',intval($projet->id))->get();
+          $instances = Contrat::where('projet_id',intval($projet->id))->get();
+          $contrats[$projet->id] = $instances;
 
         }
 

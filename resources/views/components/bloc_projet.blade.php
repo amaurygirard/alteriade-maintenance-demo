@@ -15,8 +15,15 @@
 
   </div>
 
-  @foreach ($contrats as $contrat)
 
+
+  @foreach ($contrats as $contrat)
+    @php
+      // echo '<pre>';
+      // $contrats[0]->calculateExpiration();
+      // var_dump($contrat);
+      // echo '</pre>';
+    @endphp
     @php
 
       $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $contrat->start_date);
@@ -25,15 +32,32 @@
           // Picto
           $picto = 'pictoed_calendar';
 
-          // Date de fin
-          $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', $contrat->end_date);
-          $now =  new \DateTime();
-
-          if( $endDate->getTimestamp() < $now->getTimestamp() ) {
+          if( $contrat->is_close_to_end ) {
             $warning = ' bloc_warning';
           }
           else {
             $warning = '';
+          }
+
+          // Temps restant
+          if($contrat->is_ended) {
+            $temps_restant = 'Contrat expiré';
+          }
+          else {
+
+            $temps_restant = '';
+
+            if($contrat->type == 'annuel') {
+              // Year
+              $temps_restant .= ($contrat->diff->y > 0) ? $contrat->diff->y.' an, ' : '';
+
+              // Mois
+              $temps_restant .= ($contrat->diff->m > 0) ? $contrat->diff->m.' mois et ' : '';
+
+              // Jours
+              $temps_restant .= ($contrat->diff->d > 0) ? $contrat->diff->d.' jour' .(($contrat->diff->d > 1) ? 's' : '') : '';
+            }
+
           }
 
       }
@@ -41,6 +65,7 @@
           // Picto
           $picto = 'pictoed_clock';
           $warning = '';
+          $temps_restant = 'Temps restant à calculer';
 
       }
 
@@ -53,7 +78,7 @@
         <span><strong>{{ $contrat->name }}</strong></span>
         <span>
           <span class="txtright">Date de début du contrat : {{ $startDate->format('d/m/Y') }}</span>
-          <span class="bloc_details_countdown txtright">Temps restant</span>
+          <span class="bloc_details_countdown txtright">{{ $temps_restant }}</span>
         </span>
 
       </p>

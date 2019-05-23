@@ -6,230 +6,77 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contrat extends Model
 {
-    protected $id;
-    protected $projet_id;
-    protected $name;
-    protected $startDate;
-    protected $endDate;
-    protected $minutesInForfait;
-    protected $type;
-    protected $dateCreated;
-    protected $dateUpdated;
 
     /**
-     * Get the value of Id
-     *
-     * @return mixed
+     * Attributs d'expiration du contrat
+     * Ne sont pas enregistrés en BDD
+     * Mais sont calculés par la méthode calculateExpiration()
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    public $diff = false;
+    public $is_close_to_end = false;
+    public $is_ended = false;
+
 
     /**
-     * Set the value of Id
+     * The event map for the model.
      *
-     * @param mixed id
-     *
-     * @return self
+     * @var array
      */
-    public function setId($id)
-    {
-        $this->id = $id;
+    protected $dispatchesEvents = [
+        'retrieved' => \App\Observers\ContratObserver::class,
+    ];
 
-        return $this;
-    }
 
     /**
-     * Get the value of Projet Id
-     *
-     * @return mixed
+     * Mutators pour les attributs d'expiration
      */
-    public function getProjetId()
-    {
-        return $this->projet_id;
+    public function setDiffAttribute($diff) {
+      $this->diff = $diff;
     }
+
+    public function setIsEndedAttribute(bool $bool) {
+      $this->is_ended = $bool;
+    }
+
+    public function setIsCloseToEndAttribute(bool $bool) {
+      $this->is_close_to_end = $bool;
+    }
+
 
     /**
-     * Set the value of Projet Id
-     *
-     * @param mixed projet_id
-     *
-     * @return self
+     * Calcul des attributs d'expiration du contrat :
+     * diff, is_ended et is_close_to_end
      */
-    public function setProjetId($projet_id)
-    {
-        $this->projet_id = $projet_id;
+    public function calculateExpiration() {
+      if( $this->type == 'annuel' ) {
 
-        return $this;
+        $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->end_date);
+        $now =  new \DateTime();
+
+        $this->setDiffAttribute( $now->diff($endDate) );
+
+        if ($this->diff->invert == 1) { // 1 si date dans le passé
+
+          $this->setIsEndedAttribute( true );
+          $this->setIsCloseToEndAttribute( false );
+
+        }
+        else if (
+          $this->diff->invert == 0 // date dans le futur
+          && $this->diff->y < 1 && $this->diff->m < 2 // moins de 2 mois de différence
+        ) {
+
+          $this->setIsEndedAttribute( false );
+          $this->setIsCloseToEndAttribute( true );
+
+        }
+        else {
+
+          $this->setIsEndedAttribute( false );
+          $this->setIsCloseToEndAttribute( false );
+
+        }
+
+      }
     }
-
-    /**
-     * Get the value of Name
-     *
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set the value of Name
-     *
-     * @param mixed name
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Start Date
-     *
-     * @return mixed
-     */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * Set the value of Start Date
-     *
-     * @param mixed startDate
-     *
-     * @return self
-     */
-    public function setStartDate($startDate)
-    {
-        $this->startDate = $startDate;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of End Date
-     *
-     * @return mixed
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * Set the value of End Date
-     *
-     * @param mixed endDate
-     *
-     * @return self
-     */
-    public function setEndDate($endDate)
-    {
-        $this->endDate = $endDate;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Minutes In Forfait
-     *
-     * @return mixed
-     */
-    public function getMinutesInForfait()
-    {
-        return $this->minutesInForfait;
-    }
-
-    /**
-     * Set the value of Minutes In Forfait
-     *
-     * @param mixed minutesInForfait
-     *
-     * @return self
-     */
-    public function setMinutesInForfait($minutesInForfait)
-    {
-        $this->minutesInForfait = $minutesInForfait;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Type
-     *
-     * @return mixed
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set the value of Type
-     *
-     * @param mixed type
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Date Created
-     *
-     * @return mixed
-     */
-    public function getDateCreated()
-    {
-        return $this->dateCreated;
-    }
-
-    /**
-     * Set the value of Date Created
-     *
-     * @param mixed dateCreated
-     *
-     * @return self
-     */
-    public function setDateCreated($dateCreated)
-    {
-        $this->dateCreated = $dateCreated;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Date Updated
-     *
-     * @return mixed
-     */
-    public function getDateUpdated()
-    {
-        return $this->dateUpdated;
-    }
-
-    /**
-     * Set the value of Date Updated
-     *
-     * @param mixed dateUpdated
-     *
-     * @return self
-     */
-    public function setDateUpdated($dateUpdated)
-    {
-        $this->dateUpdated = $dateUpdated;
-
-        return $this;
-    }
-
 }
