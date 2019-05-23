@@ -35,6 +35,9 @@
           if( $contrat->is_close_to_end ) {
             $warning = ' bloc_warning';
           }
+          else if( $contrat->is_ended ) {
+            $warning = ' bloc_darkened';
+          }
           else {
             $warning = '';
           }
