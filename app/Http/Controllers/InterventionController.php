@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Intervention;
+use App\Contrat;
 
 class InterventionController extends Controller
 {
@@ -31,6 +32,7 @@ class InterventionController extends Controller
 
     $intervention->save();
 
-    return redirect('/projet/'.$intervention->contrat_id);
+    $contrat = Contrat::find($intervention->contrat_id);
+    return redirect('/projet/'.$contrat->projet_id);
   }
 }
