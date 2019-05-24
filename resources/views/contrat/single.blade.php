@@ -9,11 +9,12 @@
 @section('main_section_breadcrumb')
   @parent
   | <a href="{{ route('client_single',['id'=>$client->id]) }}">{{ $client->name }}</a>
-  | <strong>{{ $projet->name }}</strong>
+  | <a href="{{ route('projet_single',['id'=>$projet->id]) }}">{{ $projet->name }}</a>
+  | <strong>{{ $contrat->name }}</strong>
 @endsection
 
 @section('main_section_add_button')
-  <button id="projet_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_contrat', ['projet_id' => $projet->id])}}" href="javascript:;"><span>Ajouter un nouveau contrat</span></button>
+  {{-- <button id="projet_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_contrat', ['projet_id' => $projet->id])}}" href="javascript:;"><span>Ajouter un nouveau contrat</span></button> --}}
 @endsection
 
 
