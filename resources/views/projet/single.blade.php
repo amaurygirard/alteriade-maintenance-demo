@@ -21,11 +21,6 @@
   <h2><strong>Tous les contrats</strong></h2>
 
   @foreach ($contrats as $contrat)
-    @php
-      // echo '<pre>';
-      // var_dump($interventions);
-      // echo '</pre>';
-    @endphp
     @component('components.bloc_contrat', ['contrat' => $contrat, 'interventions' => $interventions[$contrat->id]])
     @endcomponent
   @endforeach
