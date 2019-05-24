@@ -28,48 +28,43 @@
 
       $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $contrat->start_date);
 
+      // Temps restant
+      $temps_restant = 'Temps restant : ';
+
       if($contrat->type == 'annuel') {
-          // Picto
-          $picto = 'pictoed_calendar';
 
-          if( $contrat->is_close_to_end ) {
-            $warning = ' bloc_warning';
-          }
-          else if( $contrat->is_ended ) {
-            $warning = ' bloc_darkened';
-          }
-          else {
-            $warning = '';
-          }
+        // Picto
+        $picto = 'pictoed_calendar';
 
-          // Temps restant
-          if($contrat->is_ended) {
-            $temps_restant = 'Contrat expiré';
-          }
-          else {
-
-            $temps_restant = '';
-
-            if($contrat->type == 'annuel') {
-              // Year
-              $temps_restant .= ($contrat->diff->y > 0) ? $contrat->diff->y.' an, ' : '';
-
-              // Mois
-              $temps_restant .= ($contrat->diff->m > 0) ? $contrat->diff->m.' mois et ' : '';
-
-              // Jours
-              $temps_restant .= ($contrat->diff->d > 0) ? $contrat->diff->d.' jour' .(($contrat->diff->d > 1) ? 's' : '') : '';
-            }
-
-          }
+        // Year
+        $temps_restant .= ($contrat->diff->y > 0) ? $contrat->diff->y.' an, ' : '';
+        // Mois
+        $temps_restant .= ($contrat->diff->m > 0) ? $contrat->diff->m.' mois et ' : '';
+        // Jours
+        $temps_restant .= ($contrat->diff->d > 0) ? $contrat->diff->d.' jour' .(($contrat->diff->d > 1) ? 's' : '') : '';
 
       }
       else {
+
           // Picto
           $picto = 'pictoed_clock';
-          $warning = '';
-          $temps_restant = 'Temps restant à calculer';
 
+          // Heures
+          $temps_restant .= ($contrat->diff->h > 0) ? $contrat->diff->h.'h ' : '';
+          // Minutes
+          $temps_restant .= ($contrat->diff->i > 0) ? $contrat->diff->i.'min' : '';
+
+      }
+
+      if( $contrat->is_close_to_end ) {
+        $warning = ' bloc_warning';
+      }
+      else if( $contrat->is_ended ) {
+        $warning = ' bloc_darkened';
+        $temps_restant = 'Contrat expiré';
+      }
+      else {
+        $warning = '';
       }
 
     @endphp

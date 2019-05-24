@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Intervention;
+
 class Contrat extends Model
 {
 
@@ -48,10 +50,12 @@ class Contrat extends Model
      * diff, is_ended et is_close_to_end
      */
     public function calculateExpiration() {
+
+      $now =  new \DateTime();
+
       if( $this->type == 'annuel' ) {
 
         $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->end_date);
-        $now =  new \DateTime();
 
         $this->setDiffAttribute( $now->diff($endDate) );
 
@@ -78,5 +82,37 @@ class Contrat extends Model
         }
 
       }
+      else {
+
+        $total_minutes_spent = Intervention::where('contrat_id', $this->id)->get('minutes_spent')->sum();
+
+        $remaining_time = intval($this->minutes_in_forfait) - $total_minutes_spent;
+
+        if($remaining_time >= 120) { // plus de 2h restantes
+
+            $this->setIsEndedAttribute( false );
+            $this->setIsCloseToEndAttribute( false );
+
+        }
+        else if($remaining_time > 0) {
+
+          $this->setIsEndedAttribute( false );
+          $this->setIsCloseToEndAttribute( true );
+
+        }
+        else {
+
+          $this->setIsEndedAttribute( true );
+          $this->setIsCloseToEndAttribute( false );
+
+        }
+
+        $time_diff = new \DateTime;
+        $time_diff->setTimestamp(strtotime('-'.$remaining_time.' minutes', $now->getTimestamp()));
+
+        $this->setDiffAttribute( $now->diff($time_diff) );
+
+      }
+
     }
 }
