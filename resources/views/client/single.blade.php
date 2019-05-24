@@ -36,13 +36,17 @@
     }
   @endphp
 
+  {{-- Contrats bientôt expirés --}}
   @if (count($contrats_presque_expires) > 0)
 
-  {{-- Contrats bientôt expirés --}}
     <h2><strong>Contrats bientôt expirés</strong></h2>
 
     @foreach ($contrats_presque_expires as $projet_contrat)
-      @component('components.bloc_projet', ['projet' => $projet_contrat[0], 'contrats' => [$projet_contrat[1]]])
+      @component('components.bloc_projet', [
+        'projet' => $projet_contrat[0],
+        'contrats' => [$projet_contrat[1]],
+        'interventions' => $interventions/*[$projet_contrat[1]->id]*/
+      ])
       @endcomponent
     @endforeach
 
@@ -52,7 +56,7 @@
   <h2><strong>Tous les projets</strong></h2>
 
   @foreach ($projets as $projet)
-    @component('components.bloc_projet', ['projet' => $projet, 'contrats' => $contrats[$projet->id]])
+    @component('components.bloc_projet', ['projet' => $projet, 'contrats' => $contrats[$projet->id], 'interventions' => $interventions])
     @endcomponent
   @endforeach
 

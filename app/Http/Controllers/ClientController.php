@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\Projet;
 use App\Contrat;
+use App\Intervention;
 
 class ClientController extends Controller
 {
@@ -22,11 +23,17 @@ class ClientController extends Controller
         $client = Client::findOrFail($id);
         $projets = Projet::where('client_id',intval($id))->get();
         $contrats = [];
+        $interventions = [];
 
         foreach($projets as $projet) {
 
           $instances = Contrat::where('projet_id',intval($projet->id))->get();
           $contrats[$projet->id] = $instances;
+
+          foreach($instances as $contrat) {
+            $intervention = Intervention::where('contrat_id',intval($contrat->id))->get()->sortBy('date')->first();
+            $interventions[$contrat->id] = $intervention;
+          }
 
         }
 
@@ -35,6 +42,7 @@ class ClientController extends Controller
           'client' => $client,
           'projets' => $projets,
           'contrats' => $contrats,
+          'interventions' => $interventions,
         ]);
     }
 

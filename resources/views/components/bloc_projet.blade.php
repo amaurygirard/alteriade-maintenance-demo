@@ -88,8 +88,19 @@
 
       <p class="bloc_details_below">
 
-        <span>Dernière intervention</span>
-        <span>le : Date</span>
+        @if ($interventions[$contrat->id])
+          @php
+            $date_intervention = \DateTime::createFromFormat('Y-m-d H:i:s', $interventions[$contrat->id]->date);
+          @endphp
+
+          <span>Dernière intervention : {{ $interventions[$contrat->id]->type }}</span>
+          <span>le : {{ $date_intervention->format('d/m/Y') }}</span>
+        @else
+
+          <span>Aucune intervention n'a encore eu lieu dans le cadre de ce contrat.</span>
+
+        @endif
+
 
       </p>
 

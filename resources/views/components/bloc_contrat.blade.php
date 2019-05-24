@@ -36,45 +36,45 @@
       <h3><strong><a href="{{ route('contrat_single', ['id' => $contrat->id]) }}">{{ $contrat->name }}</a></strong></h3>
 
       <div class="bloc_tags">
-        <div class="bloc_tag tag">LM</div>
-        <div class="bloc_tag tag">JR</div>
+        <button id="intervention_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_intervention', ['contrat_id' => $contrat->id])}}" href="javascript:;"><span>+</span></button>
       </div>
 
     </div>
 
   </div>
 
-  <div class="bloc_details">
+  @foreach ($interventions as $intervention)
+    @php
+      $date_intervention = \DateTime::createFromFormat('Y-m-d H:i:s', $intervention->date);
+    @endphp
 
-    <p class="bloc_details_main bloc_details_pictoed pictoed_text pictoed_text_eab">
+    <div class="bloc_details">
 
-      <span><strong>Nom de l'intervention</strong></span>
-      <span class="flex-container">
-        <span class="txtright">Intervention de : <strong>temps passé</strong></span>
-        <span class="bloc_details_countdown txtright">le : <strong>date</strong></span>
-      </span>
+      <p class="bloc_details_main bloc_details_pictoed pictoed_text pictoed_text_eab">
 
-    </p>
+        <span><strong>{{$intervention->type}}</strong></span>
+        <span class="flex-container">
+          <span class="txtright">Intervention de : <strong>{{$intervention->minutes_spent}} minutes</strong></span>
+          <span class="bloc_details_countdown txtright">le : <strong>{{ $date_intervention->format('d/m/Y') }}</strong></span>
+        </span>
 
-    <p class="bloc_details_below">
+      </p>
 
-      <span>Description</span>
+      <p class="bloc_details_below">
 
-    </p>
+        <span>{{$intervention->description}}</span>
 
-  </div>
+      </p>
 
-  <div class="bloc_details bloc_marked bloc_darkened">
+    </div>
+  @endforeach
 
-    <p class="bloc_details_main bloc_details_pictoed pictoed_clock">
-
-      <span><strong>Lorem ipsum dolor.</strong></span>
-      <span>
-        <span class="txtright">Date de début du contrat</span>
-        <span class="bloc_details_countdown txtright">Date de fin de contrat</span>
-      </span>
-
-    </p>
-  </div>
+  @if($interventions->count() < 1)
+    <div class="bloc_details">
+      <p class="bloc_details_main">
+        <span>Aucune intervention n'a encore eu lieu dans le cadre de ce contrat.</span>
+      </p>
+    </div>
+  @endif
 
 </article>

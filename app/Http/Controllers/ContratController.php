@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Contrat;
 use App\Projet;
 use App\Client;
+use App\Intervention;
 
 class ContratController extends Controller
 {
@@ -22,12 +23,14 @@ class ContratController extends Controller
         $contrat = Contrat::findOrFail($id);
         $projet = Projet::find($contrat->projet_id);
         $client = Client::find($projet->client_id);
+        $interventions = Intervention::where('contrat_id',intval($id))->get();
 
         return view('contrat.single',
         [
           'contrat' => $contrat,
           'projet' => $projet,
           'client' => $client,
+          'interventions' => $interventions,
         ]);
     }
 
