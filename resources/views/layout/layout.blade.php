@@ -278,7 +278,11 @@
 
 	</main>
 
-	<footer><a href="#" title="alteriade">Copyright alteriade 2018</a></footer>
+	@php
+		$today = new \DateTime();
+	@endphp
+
+	<footer><a href="#" title="alteriade">Copyright alteriade {{$today->format('Y')}}</a></footer>
 
 </body>
 
