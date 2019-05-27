@@ -30,6 +30,10 @@ class InterventionController extends Controller
 
     $intervention->description = $request->description;
 
+    $intervention->is_probono = $request->is_probono;
+
+    $intervention->type = $request->type;
+
     $intervention->save();
 
     $contrat = Contrat::find($intervention->contrat_id);

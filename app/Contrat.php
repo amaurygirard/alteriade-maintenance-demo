@@ -83,7 +83,7 @@ class Contrat extends Model
       }
       else {
 
-        $total_minutes_spent = Intervention::where('contrat_id', $this->id)->sum('minutes_spent');
+        $total_minutes_spent = Intervention::where(['contrat_id' => $this->id, 'is_probono' => 0])->sum('minutes_spent');
 
         $remaining_time = intval($this->minutes_in_forfait) - $total_minutes_spent;
 

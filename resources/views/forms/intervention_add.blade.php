@@ -24,8 +24,21 @@
 
     <div>
         <p>S'agit-il d'une intervetion pro bono&nbsp;?</p>
-        <input type="radio" id="probono_non" name="type" value="0"><label for="probono_non">Non</label>
-        <input type="radio" id="probono_oui" name="type" value="1"><label for="probono_oui">Oui</label>
+        <input type="radio" id="probono_non" name="is_probono" value="0"><label for="probono_non">Non</label>
+        <input type="radio" id="probono_oui" name="is_probono" value="1"><label for="probono_oui">Oui</label>
+    </div>
+
+    <div>
+      <p>Sélectionnez un type d'intervention</p>
+      <select name="type">
+        <option value="correctif">Correction de bug</option>
+        <option value="update">Mise à jour</option>
+        <option value="sauvegarde">Sauvegarde</option>
+        <option value="minor_change">Modification mineure</option>
+        <option value="assistance">Assitance</option>
+        <option value="new_feature">Ajout de fonctionnalité</option>
+        <option value="autre">Autre</option>
+      </select>
     </div>
 
     <div>
