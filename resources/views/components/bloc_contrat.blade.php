@@ -4,27 +4,25 @@
 
     $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $contrat->start_date);
 
+    // Contrat annuel ou forfaitaire
     if($contrat->type == 'annuel') {
         // Picto
         $picto = 'pictoed_calendar';
-
-        // Date de fin
-        $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', $contrat->end_date);
-        $now =  new \DateTime();
-
-        if( $endDate->getTimestamp() < $now->getTimestamp() ) {
-          $warning = ' bloc_warning';
-        }
-        else {
-          $warning = '';
-        }
-
     }
     else {
         // Picto
         $picto = 'pictoed_clock';
-        $warning = '';
+    }
 
+    // Expiration du contrat
+    if( $contrat->is_close_to_end ) {
+        $warning = ' bloc_warning';
+    }
+    else if( $contrat->is_ended ) {
+        $warning = ' bloc_darkened';
+    }
+    else {
+        $warning = '';
     }
 
   @endphp
