@@ -18,7 +18,6 @@ class Contrat extends Model
     public $is_close_to_end = false;
     public $is_ended = false;
 
-
     /**
      * The event map for the model.
      *
@@ -84,7 +83,7 @@ class Contrat extends Model
       }
       else {
 
-        $total_minutes_spent = Intervention::where('contrat_id', $this->id)->get('minutes_spent')->sum();
+        $total_minutes_spent = Intervention::where('contrat_id', $this->id)->sum('minutes_spent');
 
         $remaining_time = intval($this->minutes_in_forfait) - $total_minutes_spent;
 
