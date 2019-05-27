@@ -50,7 +50,7 @@
 
       <p class="bloc_details_main bloc_details_pictoed pictoed_text pictoed_text_eab">
 
-        <span><strong>{{$intervention->type}}</strong></span>
+        <span><strong>{{$intervention->readable_type}}</strong></span>
         <span class="flex-container">
           <span class="txtright">Intervention de : <strong>{{$intervention->minutes_spent}} minutes</strong></span>
           <span class="bloc_details_countdown txtright">le : <strong>{{ $date_intervention->format('d/m/Y') }}</strong></span>
