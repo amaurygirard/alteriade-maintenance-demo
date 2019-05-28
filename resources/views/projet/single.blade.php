@@ -2,8 +2,8 @@
 
 
 @section('main_section_tags')
-  <div class="tag">LM</div>
-  <div class="tag">JR</div>
+  @component('components.tag_teammember_container',['teamMembers' => $projet->teammembers])
+  @endcomponent
 @endsection
 
 @section('main_section_breadcrumb')

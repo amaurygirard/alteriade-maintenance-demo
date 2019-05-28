@@ -2,12 +2,8 @@
 
 
 @section('main_section_tags')
-
-  @foreach ($client->teammembers as $tm)
-    @component('components.tag_teammember', ['tm' => $tm])
-    @endcomponent
-  @endforeach
-
+  @component('components.tag_teammember_container',['teamMembers' => $client->teammembers])
+  @endcomponent
 @endsection
 
 @section('main_section_breadcrumb')
