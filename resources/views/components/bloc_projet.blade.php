@@ -6,10 +6,8 @@
 
       <h3><strong><a href="{{ route('projet_single', ['id' => $projet->id]) }}">{{ $projet->name }}</a></strong></h3>
 
-      <div class="bloc_tags">
-        <div class="bloc_tag tag">LM</div>
-        <div class="bloc_tag tag">JR</div>
-      </div>
+      @component('components.tag_teammember_container',['teamMembers' => $projet->teammembers])
+      @endcomponent
 
     </div>
 
