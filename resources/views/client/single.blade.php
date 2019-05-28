@@ -2,11 +2,12 @@
 
 
 @section('main_section_tags')
-  
+
   @foreach ($client->teammembers as $tm)
-    <div class="tag" title="{{ $tm->first_name }} {{ $tm->last_name }}">{{ strtoupper(substr($tm->first_name, 0, 1)) }}{{ strtoupper(substr($tm->last_name, 0, 1)) }}</div>
+    @component('components.tag_teammember', ['tm' => $tm])
+    @endcomponent
   @endforeach
-  
+
 @endsection
 
 @section('main_section_breadcrumb')
