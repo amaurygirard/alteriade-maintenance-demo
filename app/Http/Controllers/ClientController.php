@@ -82,11 +82,23 @@ class ClientController extends Controller
      */
     public function create(Request $request)
     {
-      // Instanciation d'un nouveau client, auquel on attribue le nom passé en requête
+      /*
+       * Instanciation d'un nouveau client, auquel on attribue le nom passé en requête
+       */
       $client = new Client;
       $client->name = $request->name;
 
+
+      /*
+       * Le client est enregistré en BDD
+       */
       $client->save();
+
+
+      /*
+       * La relation avec les TeamMembers est également enregistrée en BDD
+       */
+      $client->teammembers()->attach($request->teammembers);
 
       return redirect('/client/'.$client->id);
     }

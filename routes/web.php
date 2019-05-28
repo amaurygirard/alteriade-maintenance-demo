@@ -24,7 +24,7 @@ Route::prefix('ajax')->group(function(){
 
   // Formulaire de création d'un client
   Route::get('/client_add', function(){
-    return view('forms.client_add');
+  return view('forms.client_add',['teamMembers' => App\TeamMember::all()]);
   })->name('ajax_add_client'); // le name permet de générer l'url depuis la vue avec route('ajax_add_client')
 
   // Formulaire de création d'un projet

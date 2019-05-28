@@ -2,8 +2,11 @@
 
 
 @section('main_section_tags')
-  <div class="tag">LM</div>
-  <div class="tag">JR</div>
+  
+  @foreach ($client->teammembers as $tm)
+    <div class="tag" title="{{ $tm->first_name }} {{ $tm->last_name }}">{{ strtoupper(substr($tm->first_name, 0, 1)) }}{{ strtoupper(substr($tm->last_name, 0, 1)) }}</div>
+  @endforeach
+  
 @endsection
 
 @section('main_section_breadcrumb')
