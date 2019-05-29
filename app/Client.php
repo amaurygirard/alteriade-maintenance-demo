@@ -12,4 +12,11 @@ class Client extends Model
      public function teammembers() {
        return $this->belongsToMany('App\TeamMember');
      }
+     
+    /**
+     * Relation avec les Projets
+     */
+     public function projets() {
+       return $this->hasMany('App\Projet');
+     }
 }

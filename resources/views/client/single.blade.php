@@ -17,52 +17,54 @@
 
 @section('main_section_body')
 
-  {{-- Si un contrat est bientôt expiré, on le fait remonter dans une section précédente --}}
-  @php
-    $contrats_presque_expires = [];
-    $contrats_expires = [];
+  {{-- Si aucun projet n'existe encore pour le client --}}
+  @if ($client->projets->count() < 1)
 
-    foreach($projets as $projet) {
-      foreach($contrats[$projet->id] as $contrat) {
+    <p class="mtl">Aucun projet n'a été trouvé pour ce client.</p>
 
-        if($contrat->is_ended) {
-          $contrats_expires[] = $contrat;
+  @else
+
+    {{-- Si un contrat est bientôt expiré, on le fait remonter dans une section mise en avant --}}
+    @php
+      $contrats_presque_expires = [];
+
+      foreach($client->projets as $projet) {
+        foreach($projet->contrats as $contrat) {
+
+          if($contrat->is_close_to_end) {
+            $contrats_presque_expires[] = [$projet, $contrat];
+          }
+
         }
-        else if($contrat->is_close_to_end) {
-          $contrats_presque_expires[] = [$projet, $contrat];
-        }
-
       }
-    }
-  @endphp
+    @endphp
 
-  {{-- Contrats bientôt expirés --}}
-  @if (count($contrats_presque_expires) > 0)
+    {{-- Contrats bientôt expirés --}}
+    @if (count($contrats_presque_expires) > 0)
 
-    <h2><strong>Contrats bientôt expirés</strong></h2>
+      <h2><strong>Contrats bientôt expirés</strong></h2>
 
-    @foreach ($contrats_presque_expires as $projet_contrat)
+      @foreach ($contrats_presque_expires as $projet_contrat)
+        @component('components.bloc_projet', [
+          'projet' => $projet_contrat[0],
+          'contrats' => [$projet_contrat[1]]
+        ])
+        @endcomponent
+      @endforeach
+
+    @endif
+
+    {{-- Affichage de tous les projets --}}
+    <h2><strong>Tous les projets</strong></h2>
+
+    @foreach ($client->projets as $projet)
       @component('components.bloc_projet', [
-        'projet' => $projet_contrat[0],
-        'contrats' => [$projet_contrat[1]],
-        'interventions' => $interventions/*[$projet_contrat[1]->id]*/
+        'projet' => $projet,
+        'contrats' => $projet->contrats,
       ])
       @endcomponent
     @endforeach
 
-  @endif
-
-  {{-- Affichage de tous les projets --}}
-  <h2><strong>Tous les projets</strong></h2>
-
-  @foreach ($projets as $projet)
-    @component('components.bloc_projet', ['projet' => $projet, 'contrats' => $contrats[$projet->id], 'interventions' => $interventions])
-    @endcomponent
-  @endforeach
-
-  {{-- Si aucun projet n'exite encore pour le client --}}
-  @if ($projets->count() < 1)
-    <p>Aucun projet n'a été trouvé pour ce client.</p>
   @endif
 
 @endsection

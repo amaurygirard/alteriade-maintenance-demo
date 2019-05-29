@@ -59,4 +59,8 @@ class Intervention extends Model
         $this->setReadableTypeAttribute( $readable_type );
 
     }
+
+    public function contrat() {
+      return $this->belongsTo('App\Contrat');
+    }
 }

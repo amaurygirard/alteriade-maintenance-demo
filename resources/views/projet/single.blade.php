@@ -8,7 +8,7 @@
 
 @section('main_section_breadcrumb')
   @parent
-  | <a href="{{ route('client_single',['id'=>$client->id]) }}">{{ $client->name }}</a>
+  | <a href="{{ route('client_single',['id'=>$projet->client->id]) }}">{{ $projet->client->name }}</a>
   | <strong>{{ $projet->name }}</strong>
 @endsection
 
@@ -18,14 +18,21 @@
 
 @section('main_section_body')
 
-  <h2><strong>Tous les contrats</strong></h2>
+  @if ($projet->contrats->count() < 1)
 
-  @foreach ($contrats as $contrat)
-    @component('components.bloc_contrat', ['contrat' => $contrat, 'interventions' => $interventions[$contrat->id]])
-    @endcomponent
-  @endforeach
+    <p class="mtl">Aucun contrat n'a été trouvé pour ce projet.</p>
 
-  @if ($contrats->count() < 1)
-    <p>Aucun contrat n'a été trouvé pour ce projet.</p>
+  @else
+
+    <h2><strong>Tous les contrats</strong></h2>
+
+    @foreach ($projet->contrats as $contrat)
+      @component('components.bloc_contrat', [
+        'contrat' => $contrat
+      ])
+      @endcomponent
+    @endforeach
+
   @endif
+
 @endsection

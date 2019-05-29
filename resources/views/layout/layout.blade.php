@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Document sans nom</title>
+	<title>@yield('page_title', 'Gestionnaire de maintenance') | alteriade</title>
 
 	<!--CSS-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />

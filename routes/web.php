@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-// Route::get('/', 'ClientController@listAll');
+Route::get('/', 'ShowHome');
 
 /*
  * Groupe de routes pour les requêtes Ajax

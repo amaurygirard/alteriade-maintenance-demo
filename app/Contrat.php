@@ -18,6 +18,8 @@ class Contrat extends Model
     public $is_close_to_end = false;
     public $is_ended = false;
 
+    public $latest_intervention = false;
+
     /**
      * The event map for the model.
      *
@@ -41,6 +43,10 @@ class Contrat extends Model
 
     public function setIsCloseToEndAttribute(bool $bool) {
       $this->is_close_to_end = $bool;
+    }
+
+    public function setLatestInterventionAttribute(Intervention $intervention) {
+      $this->latest_intervention = $intervention;
     }
 
 
@@ -113,5 +119,25 @@ class Contrat extends Model
 
       }
 
+    }
+
+    public function findLatestIntervention() {
+      $intervention = Intervention::where('contrat_id', $this->id)->get()->sortByDesc('date')->first();
+
+      if($intervention) $this->setLatestInterventionAttribute( $intervention );
+    }
+
+    /**
+     * Relation avec le Projet
+     */
+    public function projet(){
+      return $this->belongsTo('App\Projet');
+    }
+
+    /**
+     * Relation avec les interventions
+     */
+    public function interventions(){
+      return $this->hasMany('App\Intervention');
     }
 }

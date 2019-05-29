@@ -9,7 +9,21 @@ class Projet extends Model
     /**
      * Relation avec les TeamMembers
      */
-     public function teammembers() {
-       return $this->belongsToMany('App\TeamMember');
-     }
+    public function teammembers() {
+      return $this->belongsToMany('App\TeamMember');
+    }
+
+    /**
+     * Relation avec le Client
+     */
+    public function client() {
+      return $this->belongsTo('App\Client');
+    }
+
+    /**
+     * Relation avec le Contrat
+     */
+    public function contrats() {
+      return $this->hasMany('App\Contrat');
+    }
 }
