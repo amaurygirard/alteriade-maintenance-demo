@@ -18,7 +18,10 @@ class InterventionController extends Controller
    */
   public function create(Request $request)
   {
-    // Instanciation d'un nouveau projet, auquel on attribue les attributs passés en requête
+    /**
+     * Instanciation d'un nouveau projet,
+     * auquel on attribue les attributs passés en requête
+     */
     $intervention = new Intervention;
 
     $intervention->contrat_id = $request->contrat_id;
@@ -27,15 +30,26 @@ class InterventionController extends Controller
     $intervention->date = $date->format('Y-m-d H:i:s');
 
     $intervention->minutes_spent = $request->minutes_spent;
-
     $intervention->description = $request->description;
-
     $intervention->is_probono = $request->is_probono;
-
     $intervention->type = $request->type;
 
+
+    /**
+     * Enregistrement de l'intervention en BDD
+     */
     $intervention->save();
 
+
+    /**
+     * La relation avec les TeamMembers est également enregistrée en BDD
+     */
+    $intervention->teammembers()->attach($request->teammembers);
+
+
+    /**
+     * Redirection vers la page du projet à la fin de l'opération
+     */
     $contrat = Contrat::find($intervention->contrat_id);
     return redirect('/projet/'.$contrat->projet_id);
   }

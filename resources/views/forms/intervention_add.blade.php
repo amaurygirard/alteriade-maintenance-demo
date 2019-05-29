@@ -42,6 +42,15 @@
     </div>
 
     <div>
+      <p>Qui a réalisé cette intervention&nbsp;?</p>
+
+      @foreach ($teamMembers as $teamMember)
+        <input type="checkbox" name="teammembers[]" id="teammembers-{{$teamMember->id}}" value="{{$teamMember->id}}"><label for="teammembers-{{$teamMember->id}}">{{$teamMember->first_name}} {{$teamMember->last_name}}</label>
+      @endforeach
+
+    </div>
+
+    <div>
         <input type="submit" value="Créer l'intervention">
     </div>
 

@@ -24,22 +24,32 @@ Route::prefix('ajax')->group(function(){
 
   // Formulaire de création d'un client
   Route::get('/client_add', function(){
-  return view('forms.client_add',['teamMembers' => App\TeamMember::all()]);
+  return view('forms.client_add',[
+    'teamMembers' => App\TeamMember::whereIn('team', ['consultant', 'cec'])->get()
+  ]);
   })->name('ajax_add_client'); // le name permet de générer l'url depuis la vue avec route('ajax_add_client')
 
   // Formulaire de création d'un projet
   Route::get('/projet_add/{client_id}', function($client_id){
-    return view('forms.projet_add',['client_id' => $client_id, 'teamMembers' => App\TeamMember::all()]);
+    return view('forms.projet_add',[
+      'client_id' => $client_id,
+      'teamMembers' => App\TeamMember::whereIn('team', ['consultant', 'cec'])->get()
+    ]);
   })->name('ajax_add_projet'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
 
   // Formulaire de création d'un contrat
   Route::get('/contrat_add/{projet_id}', function($projet_id){
-    return view('forms.contrat_add',['projet_id' => $projet_id]);
+    return view('forms.contrat_add',[
+      'projet_id' => $projet_id
+    ]);
   })->name('ajax_add_contrat'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
 
   // Formulaire de création d'une intervention
   Route::get('/intervention_add/{contrat_id}', function($contrat_id){
-    return view('forms.intervention_add',['contrat_id' => $contrat_id]);
+    return view('forms.intervention_add',[
+      'contrat_id' => $contrat_id,
+      'teamMembers' => App\TeamMember::whereIn('team', ['web'])->get()
+    ]);
   })->name('ajax_add_intervention'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
 
 });
