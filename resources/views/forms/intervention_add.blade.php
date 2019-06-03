@@ -23,9 +23,11 @@
     </div>
 
     <div>
-        <p class="label">S'agit-il d'une intervetion pro bono&nbsp;?</p>
-        <input type="radio" id="probono_non" name="is_probono" value="0"><label for="probono_non">Non</label>
-        <input type="radio" id="probono_oui" name="is_probono" value="1"><label for="probono_oui">Oui</label>
+        <p class="label">S'agit-il d'une intervention pro bono&nbsp;?</p>
+        <div class="radio-to-buttons">
+          <input type="radio" id="probono_non" name="is_probono" value="0" checked="checked"><label for="probono_non">Non</label>
+          <input type="radio" id="probono_oui" name="is_probono" value="1"><label for="probono_oui">Oui</label>
+        </div>
     </div>
 
     <div>

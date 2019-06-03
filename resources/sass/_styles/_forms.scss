@@ -1,4 +1,10 @@
+#ajax_result {
+  width:470px;
+  max-width:100%;
+}
+
 form {
+  width:100%;
 
   /* Généralités */
   label, .label {
@@ -19,7 +25,7 @@ form {
 
   input[type="text"],select,textarea {
     width:100%;
-    margin:0 0 1rem;
+    margin:0 0 1.5rem;
     border:1px solid $gris-strong;
 
     &:hover {
@@ -90,6 +96,53 @@ form {
     }
 
   }
+
+  /* Radio to button */
+  .radio-to-buttons {
+    display:flex;
+    flex-wrap:nowrap;
+    align-items:flex-start;
+    justify-content:flex-start;
+
+    input[type="radio"] {
+      position:absolute;
+      left:-9999px;
+
+      & + label {
+        display:block;
+        width:auto;
+        margin:.5rem;
+        border-radius:20px;
+        padding:.5rem 1rem;
+        background-color:$gris-lighter;
+        color:$gris-strong;
+        border:1px solid $gris-lighter;
+      }
+
+      &:first-child + label {
+        margin-left:0;
+      }
+
+      & + label:last-child {
+        margin-bottom:1.5rem;
+      }
+
+      &:focus + label,
+      &:active + label,
+      & + label:hover {
+        color:$gris-stronger;
+        // border-color:$gris-stronger;
+      }
+
+      &:checked + label {
+        color:$gris-stronger;
+        background-color:$jaune;
+        border-color:$jaune;
+      }
+    }
+
+  }
+
 
   /* Submit */
   input[type="submit"], button[type="submit"] {

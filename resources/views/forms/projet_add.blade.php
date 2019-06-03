@@ -8,6 +8,7 @@
       <input type="hidden" name="client_id" value="{{$client_id}}">
 
       <div>
+        <label for="name">Nom du projet</label>
         <input type="text" name="name" value="" placeholder="Tapez ici le nom du projet">
       </div>
 

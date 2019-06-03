@@ -14,8 +14,10 @@
 
     <div>
         <p class="label">Sélectionnez le type de contrat&nbsp;:</p>
-        <input type="radio" id="type-annuel" name="type" value="annuel"><label for="type">Annuel</label>
-        <input type="radio" id="type-forfait" name="type" value="forfait"><label for="type">Forfait</label>
+        <div class="radio-to-buttons">
+          <input type="radio" id="type-annuel" name="type" value="annuel"><label for="type-annuel">Annuel</label>
+          <input type="radio" id="type-forfait" name="type" value="forfait"><label for="type-forfait">Forfait</label>
+        </div>
     </div>
 
     <div>

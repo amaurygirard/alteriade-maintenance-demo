@@ -2743,9 +2743,16 @@ h2 strong, .h2-like strong {
   font-weight: 700;
 }
 
+#ajax_result {
+  width: 470px;
+  max-width: 100%;
+}
+
 form {
+  width: 100%;
   /* Généralités */
   /* Checkboxes */
+  /* Radio to button */
   /* Submit */
 }
 form label, form .label {
@@ -2763,7 +2770,7 @@ form [type=color]:hover, form [type=color]:active, form [type=color]:focus, form
 }
 form input[type=text], form select, form textarea {
   width: 100%;
-  margin: 0 0 1rem;
+  margin: 0 0 1.5rem;
   border: 1px solid #c1c1c1;
 }
 form input[type=text]:hover, form select:hover, form textarea:hover {
@@ -2813,6 +2820,40 @@ form input[type=checkbox]:checked + label:before {
 }
 form input[type=checkbox]:checked + label:after {
   border-color: #4a4a4a !important;
+}
+form .radio-to-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+form .radio-to-buttons input[type=radio] {
+  position: absolute;
+  left: -9999px;
+}
+form .radio-to-buttons input[type=radio] + label {
+  display: block;
+  width: auto;
+  margin: 0.5rem;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  background-color: #f0f0f0;
+  color: #c1c1c1;
+  border: 1px solid #f0f0f0;
+}
+form .radio-to-buttons input[type=radio]:first-child + label {
+  margin-left: 0;
+}
+form .radio-to-buttons input[type=radio] + label:last-child {
+  margin-bottom: 1.5rem;
+}
+form .radio-to-buttons input[type=radio]:focus + label, form .radio-to-buttons input[type=radio]:active + label, form .radio-to-buttons input[type=radio] + label:hover {
+  color: #4a4a4a;
+}
+form .radio-to-buttons input[type=radio]:checked + label {
+  color: #4a4a4a;
+  background-color: #FFE223;
+  border-color: #FFE223;
 }
 form input[type=submit], form button[type=submit] {
   display: block;
