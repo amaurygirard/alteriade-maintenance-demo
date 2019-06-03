@@ -111,24 +111,28 @@
         </p>
 
         {{-- Dernière opération de maintenance en date pour ce contrat --}}
-        <p class="bloc_details_below">
+        @if (!$contrat->is_ended)
 
-          @if($contrat->interventions->count() > 0)
+          <p class="bloc_details_below">
 
-            @php
-              $date_intervention = \DateTime::createFromFormat('Y-m-d H:i:s', $contrat->latest_intervention->date);
-            @endphp
+            @if($contrat->interventions->count() > 0)
 
-            <span>Dernière intervention : {{ $contrat->latest_intervention->type }}</span>
-            <span>le : {{ $date_intervention->format('d/m/Y') }}</span>
+              @php
+                $date_intervention = \DateTime::createFromFormat('Y-m-d H:i:s', $contrat->latest_intervention->date);
+              @endphp
 
-          @else
+              <span>Dernière intervention : {{ $contrat->latest_intervention->type }}</span>
+              <span>le : {{ $date_intervention->format('d/m/Y') }}</span>
 
-            <span>Aucune intervention n'a encore eu lieu dans le cadre de ce contrat.</span>
+            @else
 
-          @endif
+              <span>Aucune intervention n'a encore eu lieu dans le cadre de ce contrat.</span>
 
-        </p>
+            @endif
+
+          </p>
+          
+        @endif
 
       </div>
 
