@@ -108,8 +108,10 @@ $.fn.open_close_blocs = function () {
   } // Crée le listener pour les clics
 
 
-  $(this).click(function () {
-    $(this).find('.bloc_details').slideToggle();
+  $(this).click(function (event) {
+    if (!$(event.target).closest('a, button').length > 0 && !$(event.target).is('a, button')) {
+      $(this).find('.bloc_details').slideToggle();
+    }
   });
 };
 /* Chargement du document */

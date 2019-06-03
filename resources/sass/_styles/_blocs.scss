@@ -192,3 +192,47 @@
 	}
 
 }
+
+/* Bouton ajouter une intervention */
+#intervention_add {
+	border-radius:50%;
+	border:1px solid $gris-stronger;
+	font-size:25px;
+	line-height:1;
+	padding:0;
+	height:33px;
+	width:33px;
+	color:transparent;
+	position:relative;
+
+	&:after,&:before {
+		content:' ';
+		display:inline-block;
+		background-color:$gris-stronger;
+		border:0;
+		position:absolute;
+		right:0;
+		top:50%;
+		transition-duration:.3s;
+		transition-timing-function:ease;
+		transition-property:background-color;
+	}
+
+	&:after {
+		width:17px;
+		height:1px;
+		margin-right:7px;
+	}
+
+	&:before {
+		width:1px;
+		height:17px;
+		margin-top:-8px;
+		margin-right:15px;
+	}
+
+	&:hover, &:active, &:focus {
+		background-color:$jaune;
+	}
+
+}

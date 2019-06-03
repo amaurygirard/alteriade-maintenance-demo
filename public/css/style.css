@@ -2849,14 +2849,14 @@ h2 strong, .h2-like strong {
   transition-property: background-color;
 }
 #client_add:after {
-  width: 16px;
+  width: 17px;
   height: 1px;
 }
 #client_add:before {
   width: 1px;
-  height: 16px;
+  height: 17px;
   margin-top: -8px;
-  margin-right: 7px;
+  margin-right: 8px;
 }
 #client_add:hover, #client_add:focus {
   color: #FFE223;
@@ -2901,14 +2901,14 @@ h2 strong, .h2-like strong {
   transition-property: background-color;
 }
 #projet_add span:after {
-  width: 16px;
+  width: 17px;
   height: 1px;
 }
 #projet_add span:before {
   width: 1px;
-  height: 16px;
+  height: 17px;
   margin-top: -8px;
-  margin-right: 7px;
+  margin-right: 8px;
 }
 #projet_add:hover, #projet_add:focus {
   background-color: #FFE223;
@@ -3069,6 +3069,45 @@ h2 strong, .h2-like strong {
 .bloc_details .bloc_tags {
   position: absolute;
   top: 1.5rem;
+}
+
+/* Bouton ajouter une intervention */
+#intervention_add {
+  border-radius: 50%;
+  border: 1px solid #4a4a4a;
+  font-size: 25px;
+  line-height: 1;
+  padding: 0;
+  height: 33px;
+  width: 33px;
+  color: transparent;
+  position: relative;
+}
+#intervention_add:after, #intervention_add:before {
+  content: " ";
+  display: inline-block;
+  background-color: #4a4a4a;
+  border: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-property: background-color;
+}
+#intervention_add:after {
+  width: 17px;
+  height: 1px;
+  margin-right: 7px;
+}
+#intervention_add:before {
+  width: 1px;
+  height: 17px;
+  margin-top: -8px;
+  margin-right: 15px;
+}
+#intervention_add:hover, #intervention_add:active, #intervention_add:focus {
+  background-color: #FFE223;
 }
 
 .tag, .tag--primary, .tag--success, .tag--info, .tag--warning, .tag--danger, .tag--inverse, .tag--ghost {
