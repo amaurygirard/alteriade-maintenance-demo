@@ -1,5 +1,5 @@
 #main_section {
-	margin:3rem 11.5rem 6rem 8.5rem;	
+	margin:3rem 11.5rem 6rem 8.5rem;
 }
 
 #projet_add {
@@ -9,11 +9,11 @@
 	@include font-size('h3');
 	background-color:$gris-lighter;
 	transition:background-color .3s ease;
-	
+
 	span {
 		position:relative;
 		padding-right:3.1rem;
-		
+
 		&:after,&:before {
 			content:' ';
 			display:inline-block;
@@ -28,21 +28,19 @@
 		}
 
 		&:after {
-			width:16px;
+			width:17px;
 			height:1px;
 		}
 
 		&:before {
 			width:1px;
-			height:16px;
+			height:17px;
 			margin-top:-8px;
-			margin-right:7px;
+			margin-right:8px;
 		}
 	}
-	
+
 	&:hover,&:focus {
 		background-color:$jaune;
 	}
 }
-
-
