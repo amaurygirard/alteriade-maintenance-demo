@@ -168,6 +168,11 @@
 		&:before {
 			background-color:$gris-stronger;
 		}
+
+		.bloc_details_below {
+			color:$gris-stronger;
+			border-top-color:$gris-stronger;
+		}
 	}
 }
 

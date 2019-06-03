@@ -3143,6 +3143,10 @@ form input[type=submit]:hover, form input[type=submit]:active, form input[type=s
 .bloc_marked.bloc_darkened:before {
   background-color: #4a4a4a;
 }
+.bloc_marked.bloc_darkened .bloc_details_below {
+  color: #4a4a4a;
+  border-top-color: #4a4a4a;
+}
 
 /* Blocs ouverts / fermés */
 /* Tags dans le bloc */
