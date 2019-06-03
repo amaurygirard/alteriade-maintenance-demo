@@ -3062,6 +3062,15 @@ h2 strong, .h2-like strong {
 }
 
 /* Blocs ouverts / fermés */
+/* Tags dans le bloc */
+.bloc_details {
+  position: relative;
+}
+.bloc_details .bloc_tags {
+  position: absolute;
+  top: 1.5rem;
+}
+
 .tag, .tag--primary, .tag--success, .tag--info, .tag--warning, .tag--danger, .tag--inverse, .tag--ghost {
   height: 33px;
   min-width: 33px;

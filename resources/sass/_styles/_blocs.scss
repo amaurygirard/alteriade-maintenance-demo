@@ -9,7 +9,7 @@
 	padding:0;
 	width:100%;
 }
-	
+
 .bloc_header, .bloc_details {
 	background-color:$gris-lighter;
 	border:1px solid $gris-stronger;
@@ -17,7 +17,7 @@
 
 .bloc_details {
 	border-top-width:0;
-	
+
 	&:last-child {
 		border-bottom-left-radius:20px;
 		border-bottom-right-radius:20px;
@@ -33,7 +33,7 @@
 	display:flex;
 	justify-content:space-between;
 	align-items:center;
-	
+
 	h3 {
 		margin:0;
 	}
@@ -45,7 +45,7 @@
 	display:flex;
 	justify-content:space-between;
 	align-items:center;
-	
+
 	span span {
 		display:block;
 		margin-left:3rem;
@@ -68,7 +68,7 @@
 .bloc_details_pictoed,
 .bloc_header_pictoed {
 	position:relative;
-	
+
 	&:after {
 		content:' ';
 		display:block;
@@ -83,15 +83,15 @@
 		left:0;
 		top:1.5rem;
 	}
-	
+
 	&.pictoed_clock:after {
 		background-image:url(../img/clock.png);
 	}
-	
+
 	&.pictoed_calendar:after {
 		background-image:url(../img/calendar.png);
 	}
-	
+
 	&.pictoed_text:after {
 		border:1px solid $gris-stronger;
 		text-transform:uppercase;
@@ -101,34 +101,34 @@
 		text-align:center;
 		top:2rem;
 	}
-	
+
 	&.pictoed_text_ea:after {
 		content:'ea';
 	}
-	
+
 	&.pictoed_text_ec:after {
 		content:'ec';
 	}
-	
+
 	&.pictoed_text_cc:after {
 		content:'cc';
 	}
-	
+
 	&.pictoed_text_af:after {
 		content:'af';
 	}
-	
+
 	&.pictoed_text_eab:after {
 		content:'eab';
 	}
 }
 
 .bloc_header_pictoed {
-	
+
 	.bloc_header_container {
 		padding-left:65px;
 	}
-	
+
 	&:after {
 		margin-left:1.5rem;
 	}
@@ -138,7 +138,7 @@
 /* Background-color suivant la date de fin du contrat */
 
 .bloc_marked {
-	
+
 	&:before {
 		content:' ';
 		display:block;
@@ -149,22 +149,22 @@
 		padding:0;
 		background-color:$vert;
 	}
-	
+
 	&.bloc_warning {
-	
+
 		&:before {
 			background-color:$rouge;
 		}
-	
+
 		.bloc_details_countdown {
 			color:$rouge;
 			font-weight:$weight-bold;
 		}
 	}
-	
+
 	&.bloc_darkened {
 		background-color:$gris-strong;
-		
+
 		&:before {
 			background-color:$gris-stronger;
 		}
@@ -175,9 +175,20 @@
 /* Blocs ouverts / fermés */
 
 .bloc_closed {
-	
+
 	.bloc_details {
 //		display:none;
 	}
-	
+
+}
+
+/* Tags dans le bloc */
+.bloc_details {
+	position:relative;
+
+	.bloc_tags {
+		position:absolute;
+		top:1.5rem;
+	}
+
 }
