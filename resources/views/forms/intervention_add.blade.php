@@ -23,13 +23,13 @@
     </div>
 
     <div>
-        <p>S'agit-il d'une intervetion pro bono&nbsp;?</p>
+        <p class="label">S'agit-il d'une intervetion pro bono&nbsp;?</p>
         <input type="radio" id="probono_non" name="is_probono" value="0"><label for="probono_non">Non</label>
         <input type="radio" id="probono_oui" name="is_probono" value="1"><label for="probono_oui">Oui</label>
     </div>
 
     <div>
-      <p>Sélectionnez un type d'intervention</p>
+      <p class="label">Sélectionnez un type d'intervention</p>
       <select name="type">
         <option value="correctif">Correction de bug</option>
         <option value="update">Mise à jour</option>
@@ -42,10 +42,11 @@
     </div>
 
     <div>
-      <p>Qui a réalisé cette intervention&nbsp;?</p>
+      <p class="label">Qui a réalisé cette intervention&nbsp;?</p>
 
       @foreach ($teamMembers as $teamMember)
         <input type="checkbox" name="teammembers[]" id="teammembers-{{$teamMember->id}}" value="{{$teamMember->id}}"><label for="teammembers-{{$teamMember->id}}">{{$teamMember->first_name}} {{$teamMember->last_name}}</label>
+        <div class="clear"></div>
       @endforeach
 
     </div>

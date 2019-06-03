@@ -1,0 +1,112 @@
+form {
+
+  /* Généralités */
+  label, .label {
+    display:block;
+    margin:0 0 .5rem;
+    font-weight:bold;
+  }
+
+  [type="color"], [type="date"], [type="datetime-local"], [type="email"], [type="month"], [type="number"], [type="password"], [type="search"], [type="submit"], [type="tel"], [type="text"], [type="time"], [type="url"], [type="week"], select, textarea {
+    box-shadow:none;
+    outline:none;
+
+      &:hover,&:active,&:focus {
+        box-shadow:none;
+        outline:none;
+      }
+  }
+
+  input[type="text"],select,textarea {
+    width:100%;
+    margin:0 0 1rem;
+    border:1px solid $gris-strong;
+
+    &:hover {
+      border-color:$gris-light;
+    }
+
+    &:active,&:focus {
+      border-color:$gris-stronger;
+    }
+
+  }
+
+  /* Checkboxes */
+  input[type="checkbox"] {
+    position:absolute;
+    left:-9999px;
+    width:1px;
+
+    & + label {
+      display:inline-block;
+      float:left;
+      font-weight:normal;
+      padding-left:2rem;
+      position:relative;
+
+      &:before {
+        content:" ";
+        position:absolute;
+        top:2px;
+        left:0;
+        width:1.5rem;
+        height:1.5rem;
+        border:1px solid $gris-stronger;
+      }
+
+    }
+
+    & + label:hover,
+    &:active + label,
+    &:focus + label,
+    &:checked + label {
+
+      &:after {
+        content:" ";
+        position:absolute;
+        top:0px;
+        left:6px;
+        width:.7rem;
+        height:1.3rem;
+        border-width:2px;
+        border-style:solid;
+        border-color:$gris-strong;
+        border-top-width:0px;
+        border-left-width:0px;
+        transform:rotate(45deg);
+      }
+    }
+
+    &:checked + label {
+
+      &:before {
+        border-color:$jaune;
+      }
+
+      &:after {
+        border-color:$gris-stronger !important;
+      }
+    }
+
+  }
+
+  /* Submit */
+  input[type="submit"], button[type="submit"] {
+    display:block;
+    width:100%;
+    // @include font-size('h3');
+    padding:1.5rem;
+    margin-top:1.5rem;
+    // border-radius:20px;
+    // background-color:$gris-light;
+    border:1px solid $gris-stronger;
+    // color:$gris-stronger;
+
+    &:hover,&:active,&:focus {
+      background-color:$jaune;
+      color:$gris-stronger;
+    }
+  }
+
+}

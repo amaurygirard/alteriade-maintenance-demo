@@ -7,13 +7,13 @@
 
     <input type="hidden" name="projet_id" value="{{$projet_id}}">
 
-    <div class="">
+    <div>
         <label for="name">Nom du contrat</label>
         <input type="text" id="name" name="name" value="" placeholder="Tapez ici le nom du contrat">
     </div>
 
     <div>
-        <p>Sélectionnez le type de contrat&nbsp;:</p>
+        <p class="label">Sélectionnez le type de contrat&nbsp;:</p>
         <input type="radio" id="type-annuel" name="type" value="annuel"><label for="type">Annuel</label>
         <input type="radio" id="type-forfait" name="type" value="forfait"><label for="type">Forfait</label>
     </div>
