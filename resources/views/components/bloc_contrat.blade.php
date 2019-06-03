@@ -32,7 +32,7 @@
 
     <div class="bloc_header_container">
 
-      <h3><strong><a href="{{ route('contrat_single', ['id' => $contrat->id]) }}">{{ $contrat->name }}</a></strong></h3>
+      <h3><strong>{{-- <a href="{{ route('contrat_single', ['id' => $contrat->id]) }}"> --}}{{ $contrat->name }}{{-- </a> --}}</strong></h3>
 
       {{-- Bouton ajouter une intervention --}}
       <button id="intervention_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_intervention', ['contrat_id' => $contrat->id])}}" href="javascript:;" title="Ajouter une intervention"><span>+</span></button>
