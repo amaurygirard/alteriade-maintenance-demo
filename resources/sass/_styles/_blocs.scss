@@ -241,3 +241,63 @@
 	}
 
 }
+
+/* Bouton pour l'ouverture et la fermeture des blocs */
+.bloc_switcher {
+	border-radius:50%;
+	border:1px solid $gris-stronger;
+	font-size:25px;
+	line-height:1;
+	padding:0;
+	height:33px;
+	width:33px;
+	color:transparent;
+	position:absolute;
+	top:50%;
+	margin-top:-15px;
+	right:1.5rem;
+	transition:transform .3s ease;
+	z-index:2;
+
+	&.click_to_open {
+		transform:rotate(90deg);
+	}
+
+	&:before, &:after {
+		content:' ';
+		display:block;
+		position:absolute;
+		width:12px;
+		height:1px;
+		background-color:$gris-stronger;
+		border-radius:1px;
+		top:16px;
+	}
+
+	&:before {
+		transform:rotate(53deg);
+		left:6px;
+	}
+
+	&:after {
+		transform:rotate(-53deg);
+		right:6px;
+	}
+
+	&:hover,&:active,&:focus {
+		background-color:$jaune;
+	}
+
+}
+
+.has_button_bloc_switcher {
+
+	.bloc_header {
+		position:relative;
+	}
+
+	.bloc_header_container {
+		padding-right:62px;
+	}
+
+}

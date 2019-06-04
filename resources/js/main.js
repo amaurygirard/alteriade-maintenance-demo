@@ -4,26 +4,47 @@ $.fn.open_close_blocs = function() {
 
 	"use strict";
 
-	// Affiche le pointeur pour signaler l'interaction
-	$(this).css('cursor','pointer');
+	/*
+	 * Crée un bouton d'ouverture/fermeture
+	 */
+	var bloc_switcher = '<button title="Masquer le détail" class="bloc_switcher"></button>';
 
-	// Masque les éléments qui portent la classe 'bloc_closed'
+	// Ajout du bouton dans le header du bloc
+	$(this).addClass('has_button_bloc_switcher').find('.bloc_header').prepend(bloc_switcher);
+
+
+	/*
+	 * Masque les éléments qui portent la classe 'bloc_closed'
+	 */
 	var elements = $(this);
 
 	for(var i = 0; i < elements.length; i++) {
 
 		if($(elements[i]).hasClass('bloc_closed')) {
-			$(elements[i]).find('.bloc_details').slideUp();
+			// Masque le bloc
+			$(elements[i]).find('.bloc_details').css('display','none');
+			// Synchronise le bouton (flèche et title)
+			$(elements[i]).find('.bloc_switcher').addClass('click_to_open').attr('title','Afficher le détail');
 		}
 
 	}
 
-	// Crée le listener pour les clics
-	$(this).click(function(event){
 
-		if( !$(event.target).closest('a, button').length > 0 && !$(event.target).is('a, button') ) {
-			$(this).find('.bloc_details').slideToggle();
-		}
+	/*
+	 * Crée le listener pour les clics sur le bouton
+	 */
+	$(this).find('button.bloc_switcher').click(function(event){
+
+			$(this).parent().siblings('.bloc_details').slideToggle();
+			$(this).toggleClass('click_to_open');
+
+			if($(this).attr('title') == "Afficher le détail") {
+				$(this).attr('title', "Masquer le détail");
+			}
+			else {
+				$(this).attr('title', "Afficher le détail");
+			}
+
 	});
 
 };
