@@ -24,6 +24,6 @@ class Projet extends Model
      * Relation avec le Contrat
      */
     public function contrats() {
-      return $this->hasMany('App\Contrat');
+      return $this->hasMany('App\Contrat')->orderBy('start_date','desc');
     }
 }
