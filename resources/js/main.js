@@ -10,7 +10,10 @@ $.fn.open_close_blocs = function() {
 	var bloc_switcher = '<button title="Masquer le détail" class="bloc_switcher"></button>';
 
 	// Ajout du bouton dans le header du bloc
-	$(this).addClass('has_button_bloc_switcher').find('.bloc_header').prepend(bloc_switcher);
+	$(this)
+		/*.addClass('has_button_bloc_switcher')*/
+		.find('.bloc_header_container')
+		.append(bloc_switcher);
 
 
 	/*
@@ -35,7 +38,7 @@ $.fn.open_close_blocs = function() {
 	 */
 	$(this).find('button.bloc_switcher').click(function(event){
 
-			$(this).parent().siblings('.bloc_details').slideToggle();
+			$(this).closest('.bloc').find('.bloc_details').slideToggle();
 			$(this).toggleClass('click_to_open');
 
 			if($(this).attr('title') == "Afficher le détail") {

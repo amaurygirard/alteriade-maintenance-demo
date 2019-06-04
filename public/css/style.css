@@ -3255,10 +3255,8 @@ form input[type=submit]:hover, form input[type=submit]:active, form input[type=s
   height: 33px;
   width: 33px;
   color: transparent;
-  position: absolute;
-  top: 50%;
-  margin-top: -15px;
-  right: 1.5rem;
+  position: relative;
+  margin-left: 1.5rem;
   transition: -webkit-transform 0.3s ease;
   transition: transform 0.3s ease;
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
@@ -3290,13 +3288,6 @@ form input[type=submit]:hover, form input[type=submit]:active, form input[type=s
 }
 .bloc_switcher:hover, .bloc_switcher:active, .bloc_switcher:focus {
   background-color: #FFE223;
-}
-
-.has_button_bloc_switcher .bloc_header {
-  position: relative;
-}
-.has_button_bloc_switcher .bloc_header_container {
-  padding-right: 62px;
 }
 
 .tag, .tag--primary, .tag--success, .tag--info, .tag--warning, .tag--danger, .tag--inverse, .tag--ghost {

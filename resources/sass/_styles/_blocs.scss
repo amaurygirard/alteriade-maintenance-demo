@@ -41,7 +41,7 @@
 	> span {
 		flex-grow:1;
 		margin: 0 1.5rem;
-		
+
 		span {
 			display:block;
 
@@ -262,10 +262,8 @@
 	height:33px;
 	width:33px;
 	color:transparent;
-	position:absolute;
-	top:50%;
-	margin-top:-15px;
-	right:1.5rem;
+	position:relative;
+	margin-left:1.5rem;
 	transition:transform .3s ease;
 	z-index:2;
 
@@ -296,18 +294,6 @@
 
 	&:hover,&:active,&:focus {
 		background-color:$jaune;
-	}
-
-}
-
-.has_button_bloc_switcher {
-
-	.bloc_header {
-		position:relative;
-	}
-
-	.bloc_header_container {
-		padding-right:62px;
 	}
 
 }
