@@ -9,6 +9,16 @@ use App\Client;
 class ClientController extends Controller
 {
     /**
+     * Authentification nécessaire
+     */
+    public function __construct()
+    {
+
+      $this->middleware('auth');
+
+    }
+
+    /**
      * Show the profile for the given client.
      *
      * @param  int  $id

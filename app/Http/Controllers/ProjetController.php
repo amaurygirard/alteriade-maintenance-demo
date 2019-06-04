@@ -9,6 +9,16 @@ use App\Projet;
 class ProjetController extends Controller
 {
     /**
+     * Authentification nécessaire
+     */
+    public function __construct()
+    {
+
+      $this->middleware('auth');
+
+    }
+
+    /**
      * Show the profile for the given projet.
      *
      * @param  int  $id

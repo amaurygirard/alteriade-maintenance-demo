@@ -1,3 +1,7 @@
+@php
+	$user = Auth::user();
+@endphp
+
 <!doctype html>
 <html>
 
@@ -46,9 +50,11 @@
 
 		</section>
 
-		{{-- Liste des clients : composant --}}
-		@component('components.client_list')
-		@endcomponent
+		{{-- Liste des clients : composant appelé par défaut --}}
+		@section('client_list')
+			@component('components.client_list')
+			@endcomponent
+		@show
 
 	</main>
 
@@ -58,7 +64,15 @@
 		$today = new \DateTime();
 	@endphp
 
-	<footer><a href="#" title="alteriade">Copyright alteriade {{$today->format('Y')}}</a></footer>
+	<footer>
+
+		<a href="#" title="alteriade">Copyright alteriade {{$today->format('Y')}}</a>
+
+		@if($user)
+			&nbsp;| {{ $user->name }} |&nbsp;<a href="/logout">Se déconnecter</a>
+		@endif
+
+	</footer>
 
 </body>
 

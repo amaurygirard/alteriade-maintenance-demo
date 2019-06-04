@@ -2743,9 +2743,13 @@ h2 strong, .h2-like strong {
   font-weight: 700;
 }
 
-#ajax_result {
+#ajax_result, #form_container {
   width: 470px;
   max-width: 100%;
+}
+
+#form_container {
+  margin: 5rem auto;
 }
 
 form {
@@ -2768,15 +2772,15 @@ form [type=color]:hover, form [type=color]:active, form [type=color]:focus, form
   box-shadow: none;
   outline: none;
 }
-form input[type=text], form select, form textarea {
+form input[type=text], form input[type=email], form input[type=password], form select, form textarea {
   width: 100%;
   margin: 0 0 1.5rem;
   border: 1px solid #c1c1c1;
 }
-form input[type=text]:hover, form select:hover, form textarea:hover {
+form input[type=text]:hover, form input[type=email]:hover, form input[type=password]:hover, form select:hover, form textarea:hover {
   border-color: #eaeaea;
 }
-form input[type=text]:active, form input[type=text]:focus, form select:active, form select:focus, form textarea:active, form textarea:focus {
+form input[type=text]:active, form input[type=text]:focus, form input[type=email]:active, form input[type=email]:focus, form input[type=password]:active, form input[type=password]:focus, form select:active, form select:focus, form textarea:active, form textarea:focus {
   border-color: #4a4a4a;
 }
 form input[type=checkbox] {

@@ -9,6 +9,16 @@ use App\Contrat;
 
 class InterventionController extends Controller
 {
+    /**
+     * Authentification nécessaire
+     */
+    public function __construct()
+    {
+
+      $this->middleware('auth');
+
+    }
+
 
   /**
    * Add new Intervention

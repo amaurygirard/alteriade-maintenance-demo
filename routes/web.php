@@ -15,6 +15,13 @@
 //     return view('welcome');
 // });
 
+Auth::routes();
+
+Route::get('/logout', function(){
+  Auth::logout();
+  return redirect('/');
+});
+
 Route::get('/', 'ShowHome');
 
 /*

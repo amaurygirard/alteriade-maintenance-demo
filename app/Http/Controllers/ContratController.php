@@ -9,6 +9,16 @@ use App\Contrat;
 class ContratController extends Controller
 {
     /**
+     * Authentification nécessaire
+     */
+    public function __construct()
+    {
+
+      $this->middleware('auth');
+
+    }
+
+    /**
      * Show the profile for the given contrat.
      *
      * @param  int  $id

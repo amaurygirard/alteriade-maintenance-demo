@@ -10,6 +10,16 @@ use App\Contrat;
 class ShowHome extends Controller
 {
     /**
+     * Authentification nécessaire
+     */
+    public function __construct()
+    {
+
+      $this->middleware('auth');
+
+    }
+
+    /**
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request

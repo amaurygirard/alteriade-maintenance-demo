@@ -1,6 +1,10 @@
-#ajax_result {
+#ajax_result, #form_container {
   width:470px;
   max-width:100%;
+}
+
+#form_container {
+  margin:5rem auto;
 }
 
 form {
@@ -23,7 +27,7 @@ form {
       }
   }
 
-  input[type="text"],select,textarea {
+  input[type="text"],input[type="email"],input[type="password"],select,textarea {
     width:100%;
     margin:0 0 1.5rem;
     border:1px solid $gris-strong;
