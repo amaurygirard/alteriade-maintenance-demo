@@ -5,9 +5,21 @@
    * on la définit par défaut à false
    */
   $show_client = isset($show_client) ? $show_client : false;
+
+  /*
+   * Si la variable $bloc_closed n'est pas passée
+   * dans les paramètres d'appel du composant
+   * on la définit par défaut à false
+   */
+  $bloc_closed = isset($bloc_closed) ? $bloc_closed : false;
+
+  /*
+   * Bloc ouvert ou fermé
+   */
+   $closed = ($bloc_closed) ? ' bloc_closed' : '';
 @endphp
 
-<article class="bloc">
+<article class="bloc{{$closed}}">
 
 
   {{-- En-tête du bloc : partie concernant le projet --}}
@@ -131,7 +143,7 @@
             @endif
 
           </p>
-          
+
         @endif
 
       </div>

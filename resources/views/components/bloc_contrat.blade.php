@@ -1,4 +1,10 @@
 @php
+  /*
+   * Si la variable $bloc_closed n'est pas passée
+   * dans les paramètres d'appel du composant
+   * on la définit par défaut à false
+   */
+  $bloc_closed = isset($bloc_closed) ? $bloc_closed : false;
 
   /*
    * Date de début du contrat
@@ -23,9 +29,14 @@
       $warning = '';
   }
 
+  /*
+   * Bloc ouvert ou fermé
+   */
+   $closed = ($bloc_closed) ? ' bloc_closed' : '';
+
 @endphp
 
-<article class="bloc">
+<article class="bloc{{$closed}}">
 
   {{-- En-tête du bloc : informations générales du contrat --}}
   <div class="bloc_header bloc_marked{{ $warning }} bloc_header_pictoed {{ $picto }}">

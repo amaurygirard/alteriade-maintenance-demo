@@ -61,6 +61,7 @@
       @component('components.bloc_projet', [
         'projet' => $projet,
         'contrats' => $projet->contrats,
+        'bloc_closed' => true,
       ])
       @endcomponent
     @endforeach
