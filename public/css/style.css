@@ -3071,6 +3071,13 @@ form input[type=submit]:hover, form input[type=submit]:active, form input[type=s
 .bloc_header .bloc_header_container h3 {
   margin: 0;
 }
+.bloc_header .bloc_header_container > span {
+  flex-grow: 1;
+  margin: 0 1.5rem;
+}
+.bloc_header .bloc_header_container > span span {
+  display: block;
+}
 
 .bloc_details_main, .bloc_details_below {
   padding: 1.5rem 0 1.5rem 65px;

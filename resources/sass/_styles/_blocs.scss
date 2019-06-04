@@ -37,6 +37,16 @@
 	h3 {
 		margin:0;
 	}
+
+	> span {
+		flex-grow:1;
+		margin: 0 1.5rem;
+		
+		span {
+			display:block;
+
+		}
+	}
 }
 
 .bloc_details_main,.bloc_details_below {

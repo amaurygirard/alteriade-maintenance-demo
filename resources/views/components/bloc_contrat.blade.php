@@ -17,6 +17,30 @@
   $picto = ($contrat->type == 'annuel') ? 'pictoed_calendar' : 'pictoed_clock';
 
   /*
+   * Calcul du temps restant à afficher
+   */
+  $temps_restant = 'Temps restant : ';
+
+  if($contrat->type == 'annuel') {
+
+    // Années
+    $temps_restant .= ($contrat->diff->y > 0) ? $contrat->diff->y.' an, ' : '';
+    // Mois
+    $temps_restant .= ($contrat->diff->m > 0) ? $contrat->diff->m.' mois et ' : '';
+    // Jours
+    $temps_restant .= ($contrat->diff->d > 0) ? $contrat->diff->d.' jour' .(($contrat->diff->d > 1) ? 's' : '') : '';
+
+  }
+  else {
+
+      // Heures
+      $temps_restant .= ($contrat->diff->h > 0) ? $contrat->diff->h.'h ' : '';
+      // Minutes
+      $temps_restant .= ($contrat->diff->i > 0) ? $contrat->diff->i.'min' : '';
+
+  }
+
+  /*
    * Expiration du contrat
    */
   if( $contrat->is_close_to_end ) {
@@ -44,6 +68,11 @@
     <div class="bloc_header_container">
 
       <h3><strong>{{-- <a href="{{ route('contrat_single', ['id' => $contrat->id]) }}"> --}}{{ $contrat->name }}{{-- </a> --}}</strong></h3>
+
+      <span>
+        <span class="txtright">Date de début du contrat : {{$startDate->format('d/m/Y')}}</span>
+        <span class="txtright">{{$temps_restant}}</span>
+      </span>
 
       {{-- Bouton ajouter une intervention --}}
       <button id="intervention_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_intervention', ['contrat_id' => $contrat->id])}}" href="javascript:;" title="Ajouter une intervention"><span>+</span></button>
