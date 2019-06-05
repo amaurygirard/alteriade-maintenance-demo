@@ -1,5 +1,5 @@
 @php
-	$user = Auth::user();
+	$user = (!isset($user)) ? Auth::user() : $user;
 @endphp
 
 <!doctype html>
@@ -71,6 +71,7 @@
 		@if($user)
 			<div>
 				{{ $user->name }}
+				|&nbsp;<a href="/users">Gérer les utilisateurs</a>
 				|&nbsp;<a href="/logout">Se déconnecter</a>
 			</div>
 		@endif

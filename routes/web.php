@@ -59,6 +59,13 @@ Route::prefix('ajax')->group(function(){
     ]);
   })->name('ajax_add_intervention'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
 
+  // Formulaire de création d'un utilisateur
+  Route::get('/user_add/{team}', function($team){
+    return view('forms.user_add',[
+      'team' => $team,
+    ]);
+  })->name('ajax_add_user'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
+
 });
 
 /*
@@ -104,5 +111,24 @@ Route::prefix('intervention')->group(function(){
 
   // Création d'un nouveau client
   Route::post('/create', 'InterventionController@create');
+
+});
+
+/*
+ * Groupe de routes relatives aux utilisateurs
+ */
+Route::prefix('users')->group(function(){
+
+  // Affichage de la vue principale
+  Route::get('/', function(){
+    return view('users.all', [
+      'users_web' => App\UserMeta::whereIn('team',['web'])->get(),
+      'users_cec' => App\UserMeta::whereIn('team',['cec'])->get(),
+      'users_consultant' => App\UserMeta::whereIn('team',['consultant'])->get(),
+    ]);
+  });
+
+  // Création d'un nouvel utilisateur
+  Route::post('/create', 'UserController@create');
 
 });

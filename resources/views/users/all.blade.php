@@ -15,29 +15,49 @@
 
 @section('main_section_body')
 
-
   <h2><strong>Tous les utilisateurs</strong></h2>
 
-  @if($users->count() < 1)
+	@foreach( [
+		'Équipe Web' => [
+			'collection' => $users_web,
+			'team' => 'web'
+		],
+		'CECs' => [
+			'collection' => $users_cec,
+			'team' => 'cec'
+		],
+		'Consultants' => [
+			'collection' => $users_consultant,
+			'team' => 'consultant'
+		],
+	] as $key => $value)
 
-    <p>Aucun utilisateur n'a été trouvé</p>
+	<h3 class="mtm">{{$key}}</h3>
 
-  @else
+	  @if($value['collection']->count() < 1)
 
-    <ul id="users_list" class="users_list">
-      @foreach ($users as $u)
+	    <p>Aucun utilisateur n'a été trouvé</p>
 
-          <li class="users_list_item @if($u->id == $user->id) users_list_item_self @endif">
-            <strong>{{$u->name}}</strong> - {{$u->email}}
-            - <a href="#" title="Modifier cet utilisateur">Modifier</a>
-            @if($u->id == $user->id)
-              - <a href="#" onclick="confirm('Voulez-vous vraiment supprimer l\'utilisateur {{ $u->name }} ?');" title="Supprimer cet utilisateur">Supprimer</a>
-            @endif
-          </li>
+	  @else
 
-      @endforeach
-    </ul>
+	    <ul id="users_list" class="users_list">
+	      @foreach ($value['collection'] as $u)
 
-  @endif
+	          <li class="users_list_item @if($u->user_id == $user->id) users_list_item_self @endif">
+	            <strong>{{$u->first_name}} {{$u->last_name}}</strong> - {{$u->user->email}}
+	            - <a href="#" title="Modifier cet utilisateur">Modifier</a>
+	            @if($u->user_id != $user->id)
+	              - <a href="#" onclick="confirm('Voulez-vous vraiment supprimer l\'utilisateur {{$u->first_name}} {{$u->last_name}} ?');" title="Supprimer cet utilisateur">Supprimer</a>
+	            @endif
+	          </li>
+
+	      @endforeach
+	    </ul>
+
+	  @endif
+
+		<button class="add_user" data-fancybox data-type="ajax" data-src="{{route('ajax_add_user', ['team' => $value['team']])}}" href="javascript:;"><span>Ajouter un nouvel utilisateur</span></button>
+
+	@endforeach
 
 @endsection
