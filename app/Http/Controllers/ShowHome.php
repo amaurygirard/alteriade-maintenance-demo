@@ -32,7 +32,7 @@ class ShowHome extends Controller
        * Requête des 3 dernières interventions,
        * avec les informations concernant le contrat, le projet et le client concernés
        */
-      $latest_interventions = Intervention::with('contrat.projet.client')->get()->sortByDesc('date')->take(3);
+      $latest_interventions = Intervention::with('contrat.projet.client')->get()->sortByDesc('date')->unique('contrat_id')->take(3);
 
 
       /**
