@@ -63,11 +63,11 @@ class Intervention extends Model
     public function contrat() {
       return $this->belongsTo('App\Contrat');
     }
-    
+
     /**
-     * Relation avec les TeamMembers
+     * Relation avec les Utilisateurs
      */
-    public function teammembers() {
-      return $this->belongsToMany('App\TeamMember');
+    public function users() {
+      return $this->belongsToMany('App\User');
     }
 }

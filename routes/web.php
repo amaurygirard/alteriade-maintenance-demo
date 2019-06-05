@@ -32,7 +32,7 @@ Route::prefix('ajax')->group(function(){
   // Formulaire de création d'un client
   Route::get('/client_add', function(){
   return view('forms.client_add',[
-    'teamMembers' => App\TeamMember::whereIn('team', ['consultant', 'cec'])->get()
+      'usermetas' => App\UserMeta::whereIn('team', ['consultant', 'cec'])->get()
   ]);
   })->name('ajax_add_client'); // le name permet de générer l'url depuis la vue avec route('ajax_add_client')
 
@@ -40,7 +40,7 @@ Route::prefix('ajax')->group(function(){
   Route::get('/projet_add/{client_id}', function($client_id){
     return view('forms.projet_add',[
       'client_id' => $client_id,
-      'teamMembers' => App\TeamMember::whereIn('team', ['consultant', 'cec'])->get()
+      'usermetas' => App\UserMeta::whereIn('team', ['consultant', 'cec'])->get()
     ]);
   })->name('ajax_add_projet'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
 
@@ -55,7 +55,7 @@ Route::prefix('ajax')->group(function(){
   Route::get('/intervention_add/{contrat_id}', function($contrat_id){
     return view('forms.intervention_add',[
       'contrat_id' => $contrat_id,
-      'teamMembers' => App\TeamMember::whereIn('team', ['web'])->get()
+      'usermetas' => App\UserMeta::whereIn('team', ['web'])->get()
     ]);
   })->name('ajax_add_intervention'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
 

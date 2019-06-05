@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Projet extends Model
 {
+
     /**
-     * Relation avec les TeamMembers
+     * Relation avec les Utilisateurs
      */
-    public function teammembers() {
-      return $this->belongsToMany('App\TeamMember');
+    public function users() {
+      return $this->belongsToMany('App\User');
     }
 
     /**

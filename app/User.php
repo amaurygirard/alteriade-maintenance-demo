@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Charge les metadonnées de l'utilisateur
+     */
+    public function usermeta()
+    {
+      return $this->hasOne('App\UserMeta'); 
+    }
 }

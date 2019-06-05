@@ -60,9 +60,9 @@ class ProjetController extends Controller
 
 
       /*
-       * La relation avec les TeamMembers est également enregistrée en BDD
+       * La relation avec les Utilisateurs est également enregistrée en BDD
        */
-      $projet->teammembers()->attach($request->teammembers);
+      $projet->users()->attach($request->users);
 
 
       return redirect('/projet/'.$projet->id);

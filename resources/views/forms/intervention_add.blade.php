@@ -46,8 +46,8 @@
     <div>
       <p class="label">Qui a réalisé cette intervention&nbsp;?</p>
 
-      @foreach ($teamMembers as $teamMember)
-        <input type="checkbox" name="teammembers[]" id="teammembers-{{$teamMember->id}}" value="{{$teamMember->id}}"><label for="teammembers-{{$teamMember->id}}">{{$teamMember->first_name}} {{$teamMember->last_name}}</label>
+      @foreach ($usermetas as $u)
+        <input type="checkbox" name="users[]" id="users-{{$u->user_id}}" value="{{$u->user_id}}"><label for="users-{{$u->user_id}}">{{$u->first_name}} {{$u->last_name}}</label>
         <div class="clear"></div>
       @endforeach
 

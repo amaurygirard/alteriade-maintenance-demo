@@ -40,8 +40,8 @@
       {{-- élément vide pour l'alignement du flex --}}
       <span></span>
 
-      {{-- Affiche les Team Members associés au projet --}}
-      @component('components.tag_teammember_container',['teamMembers' => $projet->teammembers])
+      {{-- Affiche les Utilisateurs associés au projet --}}
+      @component('components.tag_user_container',['users' => $projet->users])
       @endcomponent
 
     </div>

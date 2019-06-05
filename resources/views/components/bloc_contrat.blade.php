@@ -99,7 +99,7 @@
 
       <div class="bloc_details">
 
-        @component('components.tag_teammember_container',['teamMembers' => $intervention->teammembers])
+        @component('components.tag_user_container',['users' => $intervention->users])
         @endcomponent
 
         {{-- Informations générales de l'intervention --}}

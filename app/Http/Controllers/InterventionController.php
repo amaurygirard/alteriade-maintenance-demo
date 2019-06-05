@@ -52,9 +52,9 @@ class InterventionController extends Controller
 
 
     /**
-     * La relation avec les TeamMembers est également enregistrée en BDD
+     * La relation avec les Utilisateurs est également enregistrée en BDD
      */
-    $intervention->teammembers()->attach($request->teammembers);
+    $intervention->users()->attach($request->users);
 
 
     /**

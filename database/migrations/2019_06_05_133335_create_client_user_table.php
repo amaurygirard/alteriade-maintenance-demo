@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProjetTeamMemberTable extends Migration
+class CreateClientUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateProjetTeamMemberTable extends Migration
      */
     public function up()
     {
-        Schema::create('projet_team_member', function (Blueprint $table) {
+        Schema::create('client_user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('projet_id');
-            $table->bigInteger('team_member_id');
+            $table->bigInteger('client_id');
+            $table->bigInteger('user_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateProjetTeamMemberTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projet_team_member');
+        Schema::dropIfExists('client_user');
     }
 }

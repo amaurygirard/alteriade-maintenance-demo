@@ -1,8 +1,7 @@
 @extends('layout.layout')
 
-
 @section('main_section_tags')
-  @component('components.tag_teammember_container',['teamMembers' => $client->teammembers])
+  @component('components.tag_user_container',['users' => $client->users])
   @endcomponent
 @endsection
 

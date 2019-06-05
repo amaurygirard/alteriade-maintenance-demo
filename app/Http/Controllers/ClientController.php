@@ -86,9 +86,9 @@ class ClientController extends Controller
 
 
       /*
-       * La relation avec les TeamMembers est également enregistrée en BDD
+       * La relation avec les Utilisateurs est également enregistrée en BDD
        */
-      $client->teammembers()->attach($request->teammembers);
+      $client->users()->attach($request->users);
 
       return redirect('/client/'.$client->id);
     }
