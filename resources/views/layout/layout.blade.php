@@ -66,10 +66,13 @@
 
 	<footer>
 
-		<a href="#" title="alteriade">Copyright alteriade {{$today->format('Y')}}</a>
+		<a @if(!$user) class="w100 txtcenter bfc" @endif href="https://alteriade.fr/" title="alteriade">Copyright alteriade {{$today->format('Y')}}</a>
 
 		@if($user)
-			&nbsp;| {{ $user->name }} |&nbsp;<a href="/logout">Se déconnecter</a>
+			<div>
+				{{ $user->name }}
+				|&nbsp;<a href="/logout">Se déconnecter</a>
+			</div>
 		@endif
 
 	</footer>

@@ -37,6 +37,9 @@
         <strong><a href="{{ route('projet_single', ['id' => $projet->id]) }}">{{ $projet->name }}</a></strong>
       </h3>
 
+      {{-- élément vide pour l'alignement du flex --}}
+      <span></span>
+
       {{-- Affiche les Team Members associés au projet --}}
       @component('components.tag_teammember_container',['teamMembers' => $projet->teammembers])
       @endcomponent

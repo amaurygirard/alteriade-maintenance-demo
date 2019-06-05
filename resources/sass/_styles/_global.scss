@@ -21,22 +21,28 @@ section#main_section {
 	width:calc(100% - 30rem);
 }
 
-#client_list, #main_section {	
+#client_list, #main_section {
 	overflow-y:scroll;
 }
 
 footer {
-	height:5rem;
+	min-height:5rem;
 	margin:0;
 	display:flex;
 	color:$white;
 	background-color:$gris-stronger;
 	align-items:center;
-	justify-content:center;
-	
-	
+	justify-content:space-between;
+	flex-wrap:wrap;
+	padding:1.25rem 1.5rem;
+
+
 	a,a:hover,a:focus {
 		color:$white;
+	}
+
+	> *:last-child {
+		margin-bottom:0;
 	}
 }
 
@@ -54,11 +60,11 @@ h1 strong, .h1-like strong {
 
 h2, .h2-like {
 	margin-top:5rem;
-	
+
 	&:first-child {
 		margin-top:0;
 	}
-	
+
 	strong {
 		font-weight:$weight-bold;
 	}
