@@ -7,6 +7,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="robots" content="noindex, nofollow">
 	<title>@yield('page_title', 'Gestionnaire de maintenance') | alteriade</title>
 
 	<!--CSS-->
