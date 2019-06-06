@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/logout', function(){
   Auth::logout();
