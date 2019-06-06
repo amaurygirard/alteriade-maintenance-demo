@@ -40,7 +40,10 @@ class ContratController extends Controller
      */
     public function create(Request $request)
     {
-      // Instanciation d'un nouveau projet, auquel on attribue les attributs passés en requête
+      /**
+       * Instanciation d'un nouveau contrat,
+       * auquel on attribue les attributs passés en requête
+       */
       $contrat = new Contrat;
 
       $contrat->name = $request->name;
@@ -59,8 +62,16 @@ class ContratController extends Controller
         $contrat->minutes_in_forfait = ceil(floatval(preg_replace('/,/', '.', $request->minutes_in_forfait)) * 60);
       }
 
+      $contrat->minutes_mensuelles = ($request->minutes_mensuelles) ? intval($request->minutes_mensuelles) : 0;
+
+      /**
+       * Enregistrement du contrat en BDD
+       */
       $contrat->save();
 
+      /**
+       * Redirection sur la page du contrat fraichement créé
+       */
       return redirect('/contrat/'.$contrat->id);
     }
 }

@@ -17,6 +17,7 @@ class Contrat extends Model
     public $diff = false;
     public $is_close_to_end = false;
     public $is_ended = false;
+    public $minutes_spent_monthly = false;
 
     public $latest_intervention = false;
 
@@ -45,6 +46,10 @@ class Contrat extends Model
       $this->is_close_to_end = $bool;
     }
 
+    public function setMinutesSpentMonthlyAttribute(int $int) {
+      $this->minutes_spent_monthly = $int;
+    }
+
     public function setLatestInterventionAttribute(Intervention $intervention) {
       $this->latest_intervention = $intervention;
     }
@@ -56,8 +61,29 @@ class Contrat extends Model
      */
     public function calculateExpiration() {
 
+      /*
+       * Date du jour
+       */
       $now =  new \DateTime();
 
+
+      /*
+       * Pour les deux types de contrat, calcul du temps passé en maintenance mensuelle
+       */
+      // Date du début
+      $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->start_date);
+
+      // Nombre de mois écoulés depuis le début du contrat
+      $diff_since_beginning = $startDate->diff($now);
+      $months_since_beginning = ($diff_since_beginning->invert == 1) ? 0 : $diff_since_beginning->m + ($diff_since_beginning->y * 12) ;
+
+      // Nombre total de minutes mensuelles
+      $this->setMinutesSpentMonthlyAttribute( $this->minutes_mensuelles * $months_since_beginning );
+
+
+      /*
+       * Calcul de l'expiration pour un contrat de type annuel
+       */
       if( $this->type == 'annuel' ) {
 
         $endDate = \DateTime::createFromFormat('Y-m-d H:i:s', $this->end_date);
@@ -87,11 +113,16 @@ class Contrat extends Model
         }
 
       }
+
+
+      /*
+       * Calcul de l'expiration pour un contrat de type forfaitaire
+       */
       else {
 
         $total_minutes_spent = Intervention::where(['contrat_id' => $this->id, 'is_probono' => 0])->sum('minutes_spent');
 
-        $remaining_time = intval($this->minutes_in_forfait) - $total_minutes_spent;
+        $remaining_time = intval($this->minutes_in_forfait) - $total_minutes_spent - $this->minutes_spent_monthly;
 
         if($remaining_time >= 120) { // plus de 2h restantes
 
@@ -121,11 +152,13 @@ class Contrat extends Model
 
     }
 
+
     public function findLatestIntervention() {
       $intervention = Intervention::where('contrat_id', $this->id)->get()->sortByDesc('date')->first();
 
       if($intervention) $this->setLatestInterventionAttribute( $intervention );
     }
+
 
     /**
      * Relation avec le Projet
@@ -133,6 +166,7 @@ class Contrat extends Model
     public function projet(){
       return $this->belongsTo('App\Projet');
     }
+
 
     /**
      * Relation avec les interventions
