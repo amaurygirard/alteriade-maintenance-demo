@@ -71,7 +71,7 @@
 		@if($user)
 			<div>
 				{{ $user->name }}
-				|&nbsp;<a href="/users">Gérer les utilisateurs</a>
+				@if($user->usermeta->team == "web")|&nbsp;<a href="/users">Gérer les utilisateurs</a>@endif
 				|&nbsp;<a href="/logout">Se déconnecter</a>
 			</div>
 		@endif
