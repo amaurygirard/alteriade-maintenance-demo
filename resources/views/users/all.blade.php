@@ -45,11 +45,11 @@
 
 	          <li class="users_list_item @if($u->user_id == $user->id) users_list_item_self @endif">
 	            <strong>{{$u->first_name}} {{$u->last_name}}</strong> - {{$u->user->email}}
-	            - <a href="#" title="Modifier cet utilisateur">Modifier</a>
+	            {{-- - <a href="#" title="Modifier cet utilisateur">Modifier</a>
 	            @if($u->user_id != $user->id)
 	              - <a href="#" onclick="confirm('Voulez-vous vraiment supprimer l\'utilisateur {{$u->first_name}} {{$u->last_name}} ?');" title="Supprimer cet utilisateur">Supprimer</a>
 	            @endif
-	          </li>
+	          </li> --}}
 
 	      @endforeach
 	    </ul>
