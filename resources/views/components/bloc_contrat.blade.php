@@ -41,6 +41,11 @@
   }
 
   /*
+   * Affichage lisible du temps consacré aux sauvegardes mensuelles
+   */
+  $temps_sauvegardes = ((floor($contrat->minutes_spent_monthly/60) > 0) ? floor($contrat->minutes_spent_monthly/60).'h' : '') . ( (($contrat->minutes_spent_monthly % 60) > 0) ? ($contrat->minutes_spent_monthly % 60) . 'min' : '' );
+
+  /*
    * Expiration du contrat
    */
   if( $contrat->is_close_to_end ) {
@@ -80,6 +85,13 @@
     </div>
 
   </div>
+
+  {{-- Corps du bloc : affichage du temps consacré aux sauvegardes et mises à jour mensuelles --}}
+  @if ($contrat->minutes_spent_monthly)
+    <div class="bloc_details">
+      <p class="bloc_details_main"><span>Cumul des opérations de sauvegardes et de mises à jour de sécurité ({{$contrat->minutes_mensuelles}} minutes par mois)&nbsp;: <strong>{{$temps_sauvegardes}}</strong></span></p>
+    </div>
+  @endif
 
   {{-- Corps du bloc : affichage détaillé des interventions --}}
   @if($contrat->interventions->count() < 1)
