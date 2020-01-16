@@ -24,10 +24,16 @@ Route::get('/logout', function(){
 
 Route::get('/', 'ShowHome');
 
+Route::get('/error','ShowAjaxError');
+
 /*
  * Groupe de routes pour les requêtes Ajax
  */
-Route::prefix('ajax')->group(function(){
+Route::middleware(['App\Http\Middleware\CheckPermission'])->prefix('ajax')->group(function(){
+
+  /*
+   * Formulaires de création
+   */
 
   // Formulaire de création d'un client
   Route::get('/client_add', function(){
@@ -65,6 +71,19 @@ Route::prefix('ajax')->group(function(){
       'team' => $team,
     ]);
   })->name('ajax_add_user'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
+
+  /*
+   * Formulaires de modification
+   */
+
+  // Formulaire de modification d'une intervention
+  Route::get('/intervention_edit/{intervention_id}', function($intervention_id){
+    return view('forms.intervention_edit',[
+      'intervention_id' => $intervention_id,
+      'intervention' => App\Intervention::find($intervention_id),
+      'usermetas' => App\UserMeta::whereIn('team', ['web'])->get()
+    ]);
+  })->name('ajax_edit_intervention'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
 
 });
 
@@ -111,6 +130,7 @@ Route::prefix('intervention')->group(function(){
 
   // Création d'un nouveau client
   Route::post('/create', 'InterventionController@create');
+  Route::patch('/{id}/edit', 'InterventionController@edit');
 
 });
 
