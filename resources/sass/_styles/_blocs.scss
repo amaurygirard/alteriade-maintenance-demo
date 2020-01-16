@@ -252,6 +252,17 @@
 
 }
 
+/* Bouton masqué pour la modification des éléments */
+.reveal_on_hover {
+	visibility:hidden;
+	font-size:12px;
+	font-weight:500;
+
+	*:hover > & {
+		visibility:visible;
+	}
+}
+
 /* Bouton pour l'ouverture et la fermeture des blocs */
 .bloc_switcher {
 	border-radius:50%;

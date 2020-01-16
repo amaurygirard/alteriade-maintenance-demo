@@ -63,6 +63,11 @@
    */
    $closed = ($bloc_closed) ? ' bloc_closed' : '';
 
+   /*
+    * L'utilisateur est-il un membre de l'équipe web
+    */
+    $is_web_team = (Auth::user()->usermeta->team == 'web') ? true : false;
+
 @endphp
 
 <article class="bloc{{$closed}}">
@@ -72,15 +77,26 @@
 
     <div class="bloc_header_container">
 
-      <h3><strong>{{-- <a href="{{ route('contrat_single', ['id' => $contrat->id]) }}"> --}}{{ $contrat->name }}{{-- </a> --}}</strong></h3>
+      <h3>
+
+        <strong>{{-- <a href="{{ route('contrat_single', ['id' => $contrat->id]) }}"> --}}{{ $contrat->name }}{{-- </a> --}}</strong>
+
+        {{-- Bouton de modification : uniquement pour l'équipe web --}}
+        @if($is_web_team)
+          <a class="contrat_edit reveal_on_hover" data-fancybox data-type="ajax" data-src="{{route('ajax_edit_contrat',['contrat_id' => $contrat->id])}}" href="javascript:;" title="Modifier le contrat">[Modifier]</a>
+        @endif
+
+      </h3>
 
       <span>
         <span class="txtright">Date de début du contrat : {{$startDate->format('d/m/Y')}}</span>
         <span class="txtright">{{$temps_restant}}</span>
       </span>
 
-      {{-- Bouton ajouter une intervention --}}
-      <button id="intervention_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_intervention', ['contrat_id' => $contrat->id])}}" href="javascript:;" title="Ajouter une intervention"><span>+</span></button>
+      {{-- Bouton ajouter une intervention : uniquement pour l'équipe web --}}
+      @if($is_web_team)
+        <button id="intervention_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_intervention', ['contrat_id' => $contrat->id])}}" href="javascript:;" title="Ajouter une intervention"><span>+</span></button>
+      @endif
 
     </div>
 
@@ -117,7 +133,16 @@
         {{-- Informations générales de l'intervention --}}
         <p class="bloc_details_main bloc_details_tagged{{-- bloc_details_pictoed pictoed_text pictoed_text_eab --}}">
 
-          <span><strong>{{$intervention->readable_type}}</strong></span>
+          <span>
+
+            <strong>{{$intervention->readable_type}}</strong>
+
+            {{-- Bouton de modification : uniquement pour l'équipe web --}}
+            @if($is_web_team)
+              <a class="intervention_edit reveal_on_hover" data-fancybox data-type="ajax" data-src="{{route('ajax_edit_intervention',['intervention_id' => $intervention->id])}}" href="javascript:;" title="Modifier l'intervention">[Modifier]</a>
+            @endif
+
+          </span>
 
           <span class="flex-container">
             <span class="txtright">Intervention de : <strong>{{$intervention->minutes_spent}} minutes</strong></span>

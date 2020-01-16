@@ -67,4 +67,35 @@ class ProjetController extends Controller
 
       return redirect('/projet/'.$projet->id);
     }
+
+    /**
+     * Edit projet
+     *
+     * @param  int  $id
+     * @return View
+     */
+    public function edit(Request $request,$id)
+    {
+      /*
+       * Instanciation d'un nouveau projet
+       * auquel on attribue le nom passé en requête
+       */
+      $projet = Projet::find($id);
+      $projet->name = $request->name;
+
+
+      /*
+       * Enregistrement du projet en BDD
+       */
+      $projet->save();
+
+
+      /*
+       * La relation avec les Utilisateurs est également enregistrée en BDD
+       */
+      $projet->users()->sync($request->users);
+
+
+      return redirect('/projet/'.$projet->id);
+    }
 }
