@@ -2780,7 +2780,7 @@ form [type=color]:hover, form [type=color]:active, form [type=color]:focus, form
 form input[type=text], form input[type=email], form input[type=password], form select, form textarea {
   width: 100%;
   margin: 0 0 1.5rem;
-  border: 1px solid #c1c1c1;
+  border: 1px solid #a1a1a1;
 }
 form input[type=text]:hover, form input[type=email]:hover, form input[type=password]:hover, form select:hover, form textarea:hover {
   border-color: #eaeaea;
@@ -2818,7 +2818,7 @@ form input[type=checkbox] + label:hover:after, form input[type=checkbox]:active 
   height: 1.3rem;
   border-width: 2px;
   border-style: solid;
-  border-color: #c1c1c1;
+  border-color: #a1a1a1;
   border-top-width: 0px;
   border-left-width: 0px;
   -webkit-transform: rotate(45deg);
@@ -2847,7 +2847,7 @@ form .radio-to-buttons input[type=radio] + label {
   border-radius: 20px;
   padding: 0.5rem 1rem;
   background-color: #f0f0f0;
-  color: #c1c1c1;
+  color: #a1a1a1;
   border: 1px solid #f0f0f0;
 }
 form .radio-to-buttons input[type=radio]:first-child + label {
@@ -3105,8 +3105,8 @@ form input[type=submit]:hover, form input[type=submit]:active, form input[type=s
 }
 
 .bloc_details_below {
-  color: #c1c1c1;
-  border-top: 1px solid #c1c1c1;
+  color: #a1a1a1;
+  border-top: 1px solid #a1a1a1;
   padding-bottom: 2rem;
 }
 
@@ -3195,7 +3195,7 @@ form input[type=submit]:hover, form input[type=submit]:active, form input[type=s
   font-weight: 700;
 }
 .bloc_marked.bloc_darkened {
-  background-color: #c1c1c1;
+  background-color: #a1a1a1;
 }
 .bloc_marked.bloc_darkened:before {
   background-color: #4a4a4a;
@@ -3252,6 +3252,16 @@ form input[type=submit]:hover, form input[type=submit]:active, form input[type=s
 }
 #intervention_add:hover, #intervention_add:active, #intervention_add:focus {
   background-color: #FFE223;
+}
+
+/* Bouton masqué pour la modification des éléments */
+.reveal_on_hover {
+  visibility: hidden;
+  font-size: 12px;
+  font-weight: 500;
+}
+*:hover > .reveal_on_hover {
+  visibility: visible;
 }
 
 /* Bouton pour l'ouverture et la fermeture des blocs */

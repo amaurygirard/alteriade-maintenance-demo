@@ -7,11 +7,18 @@
 
 @section('main_section_breadcrumb')
   @parent
-  | <strong>{{ $client->name }}</strong>
+  | <span>
+      <strong>{{ $client->name }}</strong>
+      @if(Auth::user()->usermeta->team == "web")
+        <a class="client_edit reveal_on_hover" data-fancybox data-type="ajax" data-src="{{route('ajax_edit_client',['client_id' => $client->id])}}" href="javascript:;" title="Modifier le client">[Modifier]</a>
+      @endif
+    </span>
 @endsection
 
 @section('main_section_add_button')
-  <button id="projet_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_projet', ['client_id' => $client->id])}}" href="javascript:;"><span>Ajouter un nouveau projet</span></button>
+  @if(Auth::user()->usermeta->team == "web")
+    <button id="projet_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_projet', ['client_id' => $client->id])}}" href="javascript:;"><span>Ajouter un nouveau projet</span></button>
+  @endif
 @endsection
 
 @section('main_section_body')

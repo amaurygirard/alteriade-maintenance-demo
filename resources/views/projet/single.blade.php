@@ -8,11 +8,20 @@
 @section('main_section_breadcrumb')
   @parent
   | <a href="{{ route('client_single',['id'=>$projet->client->id]) }}">{{ $projet->client->name }}</a>
-  | <strong>{{ $projet->name }}</strong>
+  | <span>
+      <strong>{{ $projet->name }}</strong>
+
+      @if(Auth::user()->usermeta->team == "web")
+        <a class="projet_edit reveal_on_hover" data-fancybox data-type="ajax" data-src="{{route('ajax_edit_projet',['projet_id' => $projet->id])}}" href="javascript:;" title="Modifier le projet">[Modifier]</a>
+      @endif
+
+    </span>
 @endsection
 
 @section('main_section_add_button')
-  <button id="projet_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_contrat', ['projet_id' => $projet->id])}}" href="javascript:;"><span>Ajouter un nouveau contrat</span></button>
+  @if(Auth::user()->usermeta->team == "web")
+    <button id="projet_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_contrat', ['projet_id' => $projet->id])}}" href="javascript:;"><span>Ajouter un nouveau contrat</span></button>
+  @endif
 @endsection
 
 @section('main_section_body')

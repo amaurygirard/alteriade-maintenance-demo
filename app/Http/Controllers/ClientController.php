@@ -92,4 +92,33 @@ class ClientController extends Controller
 
       return redirect('/client/'.$client->id);
     }
+
+    /**
+     * Edit client
+     *
+     * @param  int  $id
+     * @return View
+     */
+    public function edit(Request $request,$id)
+    {
+      /*
+       * Instanciation d'un nouveau client, auquel on attribue le nom passé en requête
+       */
+      $client = Client::find($id);
+      $client->name = $request->name;
+
+
+      /*
+       * Le client est enregistré en BDD
+       */
+      $client->save();
+
+
+      /*
+       * La relation avec les Utilisateurs est également enregistrée en BDD
+       */
+      $client->users()->sync($request->users);
+
+      return redirect('/client/'.$client->id);
+    }
 }

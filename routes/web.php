@@ -24,10 +24,16 @@ Route::get('/logout', function(){
 
 Route::get('/', 'ShowHome');
 
+Route::get('/error','ShowAjaxError');
+
 /*
  * Groupe de routes pour les requêtes Ajax
  */
-Route::prefix('ajax')->group(function(){
+Route::middleware(['App\Http\Middleware\CheckPermission'])->prefix('ajax')->group(function(){
+
+  /*
+   * Formulaires de création
+   */
 
   // Formulaire de création d'un client
   Route::get('/client_add', function(){
@@ -66,6 +72,44 @@ Route::prefix('ajax')->group(function(){
     ]);
   })->name('ajax_add_user'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
 
+  /*
+   * Formulaires de modification
+   */
+
+  // Formulaire de modification d'un client
+  Route::get('/projet_edit/{client_id}', function($client_id){
+    return view('forms.client_edit',[
+      'client' => App\Client::find($client_id),
+      'usermetas' => App\UserMeta::whereIn('team', ['consultant', 'cec'])->get()
+    ]);
+  })->name('ajax_edit_client'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
+
+
+  // Formulaire de modification d'un projet
+  Route::get('/projet_edit/{projet_id}', function($projet_id){
+    return view('forms.projet_edit',[
+      'projet' => App\Projet::find($projet_id),
+      'usermetas' => App\UserMeta::whereIn('team', ['consultant', 'cec'])->get()
+    ]);
+  })->name('ajax_edit_projet'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
+
+  // Formulaire de modification d'un contrat
+  Route::get('/contrat_edit/{contrat_id}', function($contrat_id){
+    return view('forms.contrat_edit',[
+      'contrat_id' => $contrat_id,
+      'contrat' => App\Contrat::find($contrat_id),
+    ]);
+  })->name('ajax_edit_contrat'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
+
+  // Formulaire de modification d'une intervention
+  Route::get('/intervention_edit/{intervention_id}', function($intervention_id){
+    return view('forms.intervention_edit',[
+      'intervention_id' => $intervention_id,
+      'intervention' => App\Intervention::find($intervention_id),
+      'usermetas' => App\UserMeta::whereIn('team', ['web'])->get()
+    ]);
+  })->name('ajax_edit_intervention'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
+
 });
 
 /*
@@ -75,6 +119,7 @@ Route::prefix('client')->group(function(){
 
   // Création d'un nouveau client
   Route::post('/create', 'ClientController@create');
+  Route::patch('/{id}/edit', 'ClientController@edit');
 
   Route::get('/{id}', 'ClientController@show')->name('client_single');
 
@@ -87,6 +132,7 @@ Route::prefix('projet')->group(function(){
 
   // Création d'un nouveau client
   Route::post('/create', 'ProjetController@create');
+  Route::patch('/{id}/edit', 'ProjetController@edit');
 
   Route::get('/{id}', 'ProjetController@show')->name('projet_single');
 
@@ -99,6 +145,7 @@ Route::prefix('contrat')->group(function(){
 
   // Création d'un nouveau client
   Route::post('/create', 'ContratController@create');
+  Route::patch('/{id}/edit', 'ContratController@edit');
 
   Route::get('/{id}', 'ContratController@show')->name('contrat_single');
 
@@ -111,6 +158,7 @@ Route::prefix('intervention')->group(function(){
 
   // Création d'un nouveau client
   Route::post('/create', 'InterventionController@create');
+  Route::patch('/{id}/edit', 'InterventionController@edit');
 
 });
 
