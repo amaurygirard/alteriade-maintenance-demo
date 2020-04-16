@@ -21,6 +21,14 @@
    */
   $temps_restant = 'Temps restant : ';
 
+  // echo '<pre>';
+  // var_dump($contrat->diff);
+  // echo '</pre>';
+  // // Ajoute un signe négatif si le temps restant est négatif
+  // if($contrat->diff->invert < 1) {
+  //   $temps_restant .= '-';
+  // }
+
   if($contrat->type == 'annuel') {
 
     // Années
@@ -30,13 +38,21 @@
     // Jours
     $temps_restant .= ($contrat->diff->d > 0) ? $contrat->diff->d.' jour' .(($contrat->diff->d > 1) ? 's' : '') : '';
 
+    // Contrat expiré
+    if($contrat->is_ended) $temps_restant = 'Contrat expiré le '.\DateTime::createFromFormat('Y-m-d H:i:s', $contrat->end_date)->format('d/m/Y');
+
   }
   else {
 
       // Heures
-      $temps_restant .= ($contrat->diff->h > 0) ? $contrat->diff->h.'h ' : '';
+      $time = ($contrat->diff->h > 0) ? $contrat->diff->h.'h ' : '';
       // Minutes
-      $temps_restant .= ($contrat->diff->i > 0) ? $contrat->diff->i.'min' : '';
+      $time .= ($contrat->diff->i > 0) ? $contrat->diff->i.'min' : '';
+
+      // Contrat expiré
+      if($contrat->is_ended) $temps_restant = 'Contrat dépassé de : ';
+
+      $temps_restant .= $time;
 
   }
 

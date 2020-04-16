@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3
+* **Correctif :** Indication du solde négatif sur un contrat (précédemment indiqué comme du temps restant positif... seule la couleur grise permettant de savoir que le contrat était en réalité expiré)
+
 ## 0.2
 * **Fonctionnalité :** Affichage des opérations de sauvegardes mensuelles dans la liste des interventions sur les contrats de maintenance.
 * **Fonctionnalité :** Possibilité pour les administrateurs (équipe web) d'éditer une intervention, un contrat, un projet ou un client après leur création.
