@@ -52,6 +52,9 @@
       // Contrat expiré
       if($contrat->is_ended) $temps_restant = 'Contrat dépassé de : ';
 
+      // Rappel du forfait
+      $temps_restant = 'Forfait de '.($contrat->minutes_in_forfait/60).'h - '.$temps_restant;
+
       $temps_restant .= $time;
 
   }
