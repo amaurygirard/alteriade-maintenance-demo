@@ -4,6 +4,7 @@
 * **Correctif :** Indication du solde négatif sur un contrat (précédemment indiqué comme du temps restant positif... seule la couleur grise permettant de savoir que le contrat était en réalité expiré).
 * **Correctif :** Affichage du type lisible ("readable_type") d'intervention sur la dernière intervention affichée sur les contrats présents en home.
 * **Modification mineure :** Rappel du nombre d'heures incluses dans le forfait sur un contrat.
+* **Modification mineure :** Indique lorsqu'une intervention est effectuée à titre grâcieux.
 
 ## 0.2
 * **Fonctionnalité :** Affichage des opérations de sauvegardes mensuelles dans la liste des interventions sur les contrats de maintenance.
