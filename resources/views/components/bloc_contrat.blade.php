@@ -21,6 +21,14 @@
    */
   $temps_restant = 'Temps restant : ';
 
+  // echo '<pre>';
+  // var_dump($contrat->diff);
+  // echo '</pre>';
+  // // Ajoute un signe négatif si le temps restant est négatif
+  // if($contrat->diff->invert < 1) {
+  //   $temps_restant .= '-';
+  // }
+
   if($contrat->type == 'annuel') {
 
     // Années
@@ -30,13 +38,24 @@
     // Jours
     $temps_restant .= ($contrat->diff->d > 0) ? $contrat->diff->d.' jour' .(($contrat->diff->d > 1) ? 's' : '') : '';
 
+    // Contrat expiré
+    if($contrat->is_ended) $temps_restant = 'Contrat expiré le '.\DateTime::createFromFormat('Y-m-d H:i:s', $contrat->end_date)->format('d/m/Y');
+
   }
   else {
 
       // Heures
-      $temps_restant .= ($contrat->diff->h > 0) ? $contrat->diff->h.'h ' : '';
+      $time = ($contrat->diff->h > 0) ? $contrat->diff->h.'h ' : '';
       // Minutes
-      $temps_restant .= ($contrat->diff->i > 0) ? $contrat->diff->i.'min' : '';
+      $time .= ($contrat->diff->i > 0) ? $contrat->diff->i.'min' : '';
+
+      // Contrat expiré
+      if($contrat->is_ended) $temps_restant = 'Contrat dépassé de : ';
+
+      // Rappel du forfait
+      $temps_restant = 'Forfait de '.($contrat->minutes_in_forfait/60).'h - '.$temps_restant;
+
+      $temps_restant .= $time;
 
   }
 
@@ -145,8 +164,15 @@
           </span>
 
           <span class="flex-container">
-            <span class="txtright">Intervention de : <strong>{{$intervention->minutes_spent}} minutes</strong></span>
-            <span class="bloc_details_countdown txtright">le : <strong>{{ $date_intervention->format('d/m/Y') }}</strong></span>
+            <span class="txtright">
+              Intervention de : <strong>{{$intervention->minutes_spent}} minutes</strong>
+              @if ($intervention->is_probono)
+                <span>(à titre grâcieux)</span>
+              @endif
+            </span>
+            <span class="bloc_details_countdown txtright">
+              le : <strong>{{ $date_intervention->format('d/m/Y') }}</strong>
+            </span>
           </span>
 
         </p>

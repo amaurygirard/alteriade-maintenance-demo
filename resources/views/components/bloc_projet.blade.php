@@ -135,8 +135,7 @@
               @php
                 $date_intervention = \DateTime::createFromFormat('Y-m-d H:i:s', $contrat->latest_intervention->date);
               @endphp
-
-              <span>Dernière intervention : {{ $contrat->latest_intervention->type }}</span>
+              <span>Dernière intervention : {{ $contrat->latest_intervention->readable_type }}</span>
               <span>le : {{ $date_intervention->format('d/m/Y') }}</span>
 
             @else
