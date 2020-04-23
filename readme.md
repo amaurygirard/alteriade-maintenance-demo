@@ -8,7 +8,7 @@ Le projet utilise entre autres les frameworks et librairies suivantes :
 * [Knacss](https://www.knacss.com/) (7.0) pour CSS (Sass),
 * [jQuery](https://jquery.com/).
 
-La version de démonstration est accessible ici : [https://maintenance-demo.alteriade.fr/].
+La version de démonstration est accessible ici : https://maintenance-demo.alteriade.fr/.
 
 ## Description
 S'agissant d'un projet sur mesure, l'organisation interne de l'agence se retrouve dans les modèles de l'application.
