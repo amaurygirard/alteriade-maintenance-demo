@@ -9,6 +9,12 @@ Le projet utilise entre autres les frameworks et librairies suivantes :
 * [jQuery](https://jquery.com/).
 
 La version de démonstration est accessible ici : https://maintenance-demo.alteriade.fr/.
+* Connexion en mode lecture :
+  * ID : johnsmith@example.com
+  * Mot de passe : johnsmith
+* Connexion en mode lecture + écriture :
+  * ID : johndoe@example.com
+  * Mot de passe : johndoe
 
 ## Description
 S'agissant d'un projet sur mesure, l'organisation interne de l'agence se retrouve dans les modèles de l'application.
@@ -29,5 +35,7 @@ Les consultants et CEC sont liés à chaque client et/ou projet qu'ils ont dans 
 
 ## Évolutivité
 Cet outil est pour l'instant pourvu de fonctionnalités assez basiques, mais il est appelé à évoluer rapidement, avec notamment :
+* la configuration de l'envoi d'e-mails (qui rendra notamment possible la réinitialisation du mot de passe),
 * l'envoi de notifications par e-mail lors du cycle de vie d'un contrat (création, intervention, expiration proche...),
 * l'ajout d'observations sur les contrats pour faciliter la gestion collective.
+* ajout de fonctionnalités additionnelles concernant les utilisateurs (suppression, modification, etc.)
