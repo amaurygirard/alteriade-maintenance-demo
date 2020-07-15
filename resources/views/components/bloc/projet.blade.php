@@ -1,3 +1,7 @@
+@extends('components.bloc.layout')
+
+
+{{-- Titre et boutons du header--}}
 @php
   /*
    * Si la variable $show_client n'est pas passée
@@ -6,55 +10,42 @@
    */
   $show_client = isset($show_client) ? $show_client : false;
 
-  /*
-   * Si la variable $bloc_closed n'est pas passée
-   * dans les paramètres d'appel du composant
-   * on la définit par défaut à false
-   */
-  $bloc_closed = isset($bloc_closed) ? $bloc_closed : false;
-
-  /*
-   * Bloc ouvert ou fermé
-   */
-   $closed = ($bloc_closed) ? ' bloc_closed' : '';
+ /*
+  * L'utilisateur est-il un membre de l'équipe web
+  */
+  $is_web_team = (Auth::user()->usermeta->team == 'web') ? true : false;
 @endphp
 
-<article class="bloc{{$closed}}">
+@section('header_title')
+
+  {{-- Affiche ou non le nom du client --}}
+  @if($show_client)
+    <strong><a href="{{ route('client_single', ['id' => $projet->client->id]) }}">{{ $projet->client->name }}</a></strong> |
+  @endif
+
+  {{-- Affiche le nom du projet --}}
+  <strong><a href="{{ route('projet_single', ['id' => $projet->id]) }}">{{ $projet->name }}</a></strong>
+
+@endsection
 
 
-  {{-- En-tête du bloc : partie concernant le projet --}}
-  <div class="bloc_header">
+@section('header_buttons')
 
-    <div class="bloc_header_container">
+  {{-- Affiche les Utilisateurs associés au projet --}}
+  @component('components.tag_user_container',['users' => $projet->users])
+  @endcomponent
 
-      <h3>
-        {{-- Affiche ou non le nom du client --}}
-        @if ($show_client)
-          <strong><a href="{{ route('client_single', ['id' => $projet->client->id]) }}">{{ $projet->client->name }}</a></strong> |
-        @endif
-
-        {{-- Affiche le nom du projet --}}
-        <strong><a href="{{ route('projet_single', ['id' => $projet->id]) }}">{{ $projet->name }}</a></strong>
-      </h3>
-
-      {{-- élément vide pour l'alignement du flex --}}
-      <span></span>
-
-      {{-- Affiche les Utilisateurs associés au projet --}}
-      @component('components.tag_user_container',['users' => $projet->users])
-      @endcomponent
-
-    </div>
-
-  </div>
+@endsection
 
 
-  {{-- Corps du bloc : partie concernant les contrats --}}
+{{-- Corps du bloc --}}
+@section('bloc_content')
+
   @if (count($contrats) < 1)
 
-    <div class="bloc_details">
+    <li class="bloc_details">
       <p class="bloc_details_main">Aucun contrat de maintenance n'a été trouvé pour ce projet.</p>
-    </div>
+    </li>
 
   @else
 
@@ -112,7 +103,7 @@
 
       @endphp
 
-      <div class="bloc_details bloc_marked{{ $warning }}">
+      <li class="bloc_details bloc_marked{{ $warning }}">
 
         {{-- Affichage des informations générales du contrat --}}
         <p class="bloc_details_main bloc_details_pictoed {{ $picto }}">
@@ -148,10 +139,10 @@
 
         @endif
 
-      </div>
+      </li>
 
     @endforeach
 
   @endif
 
-</article>
+@endsection

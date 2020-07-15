@@ -1,10 +1,56 @@
+@extends('components.bloc.layout')
+
+{{-- Classes du header --}}
 @php
   /*
-   * Si la variable $bloc_closed n'est pas passée
-   * dans les paramètres d'appel du composant
-   * on la définit par défaut à false
+   * Picto selon le type de contrat
    */
-  $bloc_closed = isset($bloc_closed) ? $bloc_closed : false;
+  $picto = ($contrat->type == 'annuel') ? 'pictoed_calendar' : 'pictoed_clock';
+
+  /*
+   * Expiration du contrat
+   */
+  if( $contrat->is_close_to_end ) {
+      $warning = ' bloc_warning';
+  }
+  else if( $contrat->is_ended ) {
+      $warning = ' bloc_darkened';
+  }
+  else {
+      $warning = '';
+  }
+@endphp
+
+@section('bloc_header_classes',"bloc_marked {$warning} bloc_header_pictoed {$picto}")
+
+
+{{-- Titre et boutons du header--}}
+@php
+ /*
+  * L'utilisateur est-il un membre de l'équipe web
+  */
+  $is_web_team = (Auth::user()->usermeta->team == 'web') ? true : false;
+@endphp
+
+@section('header_title')
+  <strong>{{ $contrat->name }}</strong>
+
+  {{-- Bouton de modification : uniquement pour l'équipe web --}}
+  @if($is_web_team)
+    @component('components.modifier',['item' => $contrat])
+    @endcomponent
+  @endif
+@endsection
+
+@section('header_buttons')
+    {{-- Bouton ajouter une intervention : uniquement pour l'équipe web --}}
+    @if($is_web_team)
+      <button id="intervention_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_intervention', ['contrat_id' => $contrat->id])}}" href="javascript:;" title="Ajouter une intervention"><span>+</span></button>
+    @endif
+@endsection
+
+
+@php
 
   /*
    * Date de début du contrat
@@ -12,22 +58,9 @@
   $startDate = \DateTime::createFromFormat('Y-m-d H:i:s', $contrat->start_date);
 
   /*
-   * Picto selon le type de contrat
-   */
-  $picto = ($contrat->type == 'annuel') ? 'pictoed_calendar' : 'pictoed_clock';
-
-  /*
    * Calcul du temps restant à afficher
    */
   $temps_restant = 'Temps restant : ';
-
-  // echo '<pre>';
-  // var_dump($contrat->diff);
-  // echo '</pre>';
-  // // Ajoute un signe négatif si le temps restant est négatif
-  // if($contrat->diff->invert < 1) {
-  //   $temps_restant .= '-';
-  // }
 
   if($contrat->type == 'annuel') {
 
@@ -58,85 +91,39 @@
       $temps_restant .= $time;
 
   }
+@endphp
 
+@section('header_details')
+  <span class="txtright">Date de début du contrat : {{$startDate->format('d/m/Y')}}</span>
+  <span class="txtright">{{$temps_restant}}</span>
+@endsection
+
+
+{{-- Corps du bloc --}}
+@php
   /*
    * Affichage lisible du temps consacré aux sauvegardes mensuelles
    */
   $temps_sauvegardes = ((floor($contrat->minutes_spent_monthly/60) > 0) ? floor($contrat->minutes_spent_monthly/60).'h' : '') . ( (($contrat->minutes_spent_monthly % 60) > 0) ? ($contrat->minutes_spent_monthly % 60) . 'min' : '' );
-
-  /*
-   * Expiration du contrat
-   */
-  if( $contrat->is_close_to_end ) {
-      $warning = ' bloc_warning';
-  }
-  else if( $contrat->is_ended ) {
-      $warning = ' bloc_darkened';
-  }
-  else {
-      $warning = '';
-  }
-
-  /*
-   * Bloc ouvert ou fermé
-   */
-   $closed = ($bloc_closed) ? ' bloc_closed' : '';
-
-   /*
-    * L'utilisateur est-il un membre de l'équipe web
-    */
-    $is_web_team = (Auth::user()->usermeta->team == 'web') ? true : false;
-
 @endphp
 
-<article class="bloc{{$closed}}">
+@section('bloc_content')
 
-  {{-- En-tête du bloc : informations générales du contrat --}}
-  <div class="bloc_header bloc_marked{{ $warning }} bloc_header_pictoed {{ $picto }}">
-
-    <div class="bloc_header_container">
-
-      <h3>
-
-        <strong>{{-- <a href="{{ route('contrat_single', ['id' => $contrat->id]) }}"> --}}{{ $contrat->name }}{{-- </a> --}}</strong>
-
-        {{-- Bouton de modification : uniquement pour l'équipe web --}}
-        @if($is_web_team)
-          @component('components.modifier',['item' => $contrat])
-          @endcomponent
-        @endif
-
-      </h3>
-
-      <span>
-        <span class="txtright">Date de début du contrat : {{$startDate->format('d/m/Y')}}</span>
-        <span class="txtright">{{$temps_restant}}</span>
-      </span>
-
-      {{-- Bouton ajouter une intervention : uniquement pour l'équipe web --}}
-      @if($is_web_team)
-        <button id="intervention_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_intervention', ['contrat_id' => $contrat->id])}}" href="javascript:;" title="Ajouter une intervention"><span>+</span></button>
-      @endif
-
-    </div>
-
-  </div>
-
-  {{-- Corps du bloc : affichage du temps consacré aux sauvegardes et mises à jour mensuelles --}}
+  {{-- Affichage du temps consacré aux sauvegardes et mises à jour mensuelles --}}
   @if ($contrat->minutes_spent_monthly)
-    <div class="bloc_details">
+    <li class="bloc_details">
       <p class="bloc_details_main"><span>Cumul des opérations de sauvegardes et de mises à jour de sécurité ({{$contrat->minutes_mensuelles}} minutes par mois)&nbsp;: <strong>{{$temps_sauvegardes}}</strong></span></p>
-    </div>
+    </li>
   @endif
 
-  {{-- Corps du bloc : affichage détaillé des interventions --}}
+  {{-- Affichage détaillé des interventions --}}
   @if($contrat->interventions->count() < 1)
 
-    <div class="bloc_details">
+    <li class="bloc_details">
       <p class="bloc_details_main">
         <span>Aucune intervention n'a encore eu lieu dans le cadre de ce contrat.</span>
       </p>
-    </div>
+    </li>
 
   @else
 
@@ -145,7 +132,7 @@
         $date_intervention = \DateTime::createFromFormat('Y-m-d H:i:s', $intervention->date);
       @endphp
 
-      <div class="bloc_details">
+      <li class="bloc_details">
 
         @component('components.tag_user_container',['users' => $intervention->users])
         @endcomponent
@@ -186,9 +173,9 @@
 
         </p>
 
-      </div>
+      </li>
     @endforeach
 
   @endif
 
-</article>
+@endsection

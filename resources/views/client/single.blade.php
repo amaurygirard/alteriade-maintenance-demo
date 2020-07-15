@@ -52,7 +52,7 @@
       <h2><strong>Contrats bientôt expirés</strong></h2>
 
       @foreach ($contrats_presque_expires as $projet_contrat)
-        @component('components.bloc_projet', [
+        @component('components.bloc.projet', [
           'projet' => $projet_contrat[0],
           'contrats' => [$projet_contrat[1]]
         ])
@@ -65,7 +65,7 @@
     <h2><strong>Tous les projets</strong></h2>
 
     @foreach ($client->projets as $projet)
-      @component('components.bloc_projet', [
+      @component('components.bloc.projet', [
         'projet' => $projet,
         'contrats' => $projet->contrats,
         'bloc_closed' => true,
