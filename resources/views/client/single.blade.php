@@ -10,7 +10,8 @@
   | <span>
       <strong>{{ $client->name }}</strong>
       @if(Auth::user()->usermeta->team == "web")
-        <a class="client_edit reveal_on_hover" data-fancybox data-type="ajax" data-src="{{route('ajax_edit_client',['client_id' => $client->id])}}" href="javascript:;" title="Modifier le client">[Modifier]</a>
+        @component('components.modifier',['item' => $client])
+        @endcomponent
       @endif
     </span>
 @endsection

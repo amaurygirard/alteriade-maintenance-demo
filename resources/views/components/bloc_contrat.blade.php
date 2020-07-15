@@ -102,7 +102,8 @@
 
         {{-- Bouton de modification : uniquement pour l'équipe web --}}
         @if($is_web_team)
-          <a class="contrat_edit reveal_on_hover" data-fancybox data-type="ajax" data-src="{{route('ajax_edit_contrat',['contrat_id' => $contrat->id])}}" href="javascript:;" title="Modifier le contrat">[Modifier]</a>
+          @component('components.modifier',['item' => $contrat])
+          @endcomponent
         @endif
 
       </h3>
@@ -158,7 +159,8 @@
 
             {{-- Bouton de modification : uniquement pour l'équipe web --}}
             @if($is_web_team)
-              <a class="intervention_edit reveal_on_hover" data-fancybox data-type="ajax" data-src="{{route('ajax_edit_intervention',['intervention_id' => $intervention->id])}}" href="javascript:;" title="Modifier l'intervention">[Modifier]</a>
+              @component('components.modifier',['item' => $intervention])
+              @endcomponent
             @endif
 
           </span>

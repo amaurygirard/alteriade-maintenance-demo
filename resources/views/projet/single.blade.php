@@ -12,7 +12,8 @@
       <strong>{{ $projet->name }}</strong>
 
       @if(Auth::user()->usermeta->team == "web")
-        <a class="projet_edit reveal_on_hover" data-fancybox data-type="ajax" data-src="{{route('ajax_edit_projet',['projet_id' => $projet->id])}}" href="javascript:;" title="Modifier le projet">[Modifier]</a>
+        @component('components.modifier',['item' => $projet])
+        @endcomponent
       @endif
 
     </span>

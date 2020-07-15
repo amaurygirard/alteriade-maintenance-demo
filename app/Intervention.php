@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Intervention extends Model
 {
+
+    /**
+     * Indique le type d'objet
+     */
+    public $type = 'intervention';
+
     /**
      * Attribut qui sera appelé sur les templates à la place de $type
      * Pour faire la correspondance en termes compréhensibles avec la valeur enregistrée en BDD
