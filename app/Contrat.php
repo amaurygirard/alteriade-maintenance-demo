@@ -12,7 +12,7 @@ class Contrat extends Model
     /**
      * Indique le type d'objet
      */
-    public $type = 'contrat';
+    public $modelName = 'contrat';
 
     /**
      * Attributs d'expiration du contrat

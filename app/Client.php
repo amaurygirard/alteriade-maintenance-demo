@@ -10,7 +10,7 @@ class Client extends Model
     /**
      * Indique le type d'objet
      */
-    public $type = 'client';
+    public $modelName = 'client';
 
     /**
      * Relation avec les Utilisateurs

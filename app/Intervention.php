@@ -10,7 +10,7 @@ class Intervention extends Model
     /**
      * Indique le type d'objet
      */
-    public $type = 'intervention';
+    public $modelName = 'intervention';
 
     /**
      * Attribut qui sera appelé sur les templates à la place de $type

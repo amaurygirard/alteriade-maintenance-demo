@@ -10,7 +10,7 @@ class Projet extends Model
     /**
      * Indique le type d'objet
      */
-    public $type = 'projet';
+    public $modelName = 'projet';
 
     /**
      * Relation avec les Utilisateurs
