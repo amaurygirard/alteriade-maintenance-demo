@@ -1,7 +1,8 @@
-@extends('components.bloc.layout')
+@component('components.bloc.bloc')
 
 {{-- Classes du header --}}
 @php
+
   /*
    * Picto selon le type de contrat
    */
@@ -19,9 +20,12 @@
   else {
       $warning = '';
   }
+
 @endphp
 
-@section('bloc_header_classes',"bloc_marked {$warning} bloc_header_pictoed {$picto}")
+@slot('bloc_header_classes')
+  bloc_marked {{$warning}} bloc_header_pictoed {{$picto}}
+@endslot
 
 
 {{-- Titre et boutons du header--}}
@@ -30,24 +34,27 @@
   * L'utilisateur est-il un membre de l'équipe web
   */
   $is_web_team = (Auth::user()->usermeta->team == 'web') ? true : false;
+
+
 @endphp
 
-@section('header_title')
-  <strong>{{ $contrat->name }}</strong>
+@slot('header_title')
+  <strong>{{ $contrat->name }}
+  ({{$contrat->id}})</strong>
 
   {{-- Bouton de modification : uniquement pour l'équipe web --}}
   @if($is_web_team)
     @component('components.modifier',['item' => $contrat])
     @endcomponent
   @endif
-@endsection
+@endslot
 
-@section('header_buttons')
+@slot('header_buttons')
     {{-- Bouton ajouter une intervention : uniquement pour l'équipe web --}}
     @if($is_web_team)
       <button id="intervention_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_intervention', ['contrat_id' => $contrat->id])}}" href="javascript:;" title="Ajouter une intervention"><span>+</span></button>
     @endif
-@endsection
+@endslot
 
 
 @php
@@ -93,10 +100,10 @@
   }
 @endphp
 
-@section('header_details')
+@slot('header_details')
   <span class="txtright">Date de début du contrat : {{$startDate->format('d/m/Y')}}</span>
   <span class="txtright">{{$temps_restant}}</span>
-@endsection
+@endslot
 
 
 {{-- Corps du bloc --}}
@@ -107,7 +114,7 @@
   $temps_sauvegardes = ((floor($contrat->minutes_spent_monthly/60) > 0) ? floor($contrat->minutes_spent_monthly/60).'h' : '') . ( (($contrat->minutes_spent_monthly % 60) > 0) ? ($contrat->minutes_spent_monthly % 60) . 'min' : '' );
 @endphp
 
-@section('bloc_content')
+{{-- @section('bloc_content') --}}
 
   {{-- Affichage du temps consacré aux sauvegardes et mises à jour mensuelles --}}
   @if ($contrat->minutes_spent_monthly)
@@ -178,4 +185,4 @@
 
   @endif
 
-@endsection
+@endcomponent

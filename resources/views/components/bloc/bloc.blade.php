@@ -14,28 +14,24 @@
 
 <article class="bloc{{$closed}}">
 
-  <header class="bloc_header @yield('bloc_header_classes')">
+  <header class="bloc_header {{$bloc_header_classes}}">
     <div class="bloc_header_container">
       <h3>
-        @section('header_title')
-        @show
+        {{$header_title}}
       </h3>
 
       <span>
-        @section('header_details')
-        @show
+        {{$header_details}}
       </span>
 
-      @section('header_buttons')
-      @show
+      {{$header_buttons}}
 
     </div><!--/.bloc_header_container-->
   </header>
 
   <ul class="bloc_details_container">
 
-    @section('bloc_content')
-    @show
+    {{$slot}}
 
   </ul>
 

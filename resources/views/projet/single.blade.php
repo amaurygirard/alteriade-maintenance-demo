@@ -35,12 +35,7 @@
 
     <h2><strong>Tous les contrats</strong></h2>
 
-    @foreach ($projet->contrats as $contrat)
-      @component('components.bloc.contrat', [
-        'contrat' => $contrat
-      ])
-      @endcomponent
-    @endforeach
+    @each('components.bloc.contrat',$projet->contrats,'contrat')
 
   @endif
 

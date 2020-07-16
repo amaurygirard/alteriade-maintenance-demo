@@ -1,4 +1,4 @@
-@extends('components.bloc.layout')
+@component('components.bloc.bloc')
 
 
 {{-- Titre et boutons du header--}}
@@ -16,7 +16,10 @@
   $is_web_team = (Auth::user()->usermeta->team == 'web') ? true : false;
 @endphp
 
-@section('header_title')
+@slot('bloc_header_classes')
+@endslot
+
+@slot('header_title')
 
   {{-- Affiche ou non le nom du client --}}
   @if($show_client)
@@ -26,20 +29,21 @@
   {{-- Affiche le nom du projet --}}
   <strong><a href="{{ route('projet_single', ['id' => $projet->id]) }}">{{ $projet->name }}</a></strong>
 
-@endsection
+@endslot
 
 
-@section('header_buttons')
+@slot('header_buttons')
 
   {{-- Affiche les Utilisateurs associés au projet --}}
   @component('components.tag_user_container',['users' => $projet->users])
   @endcomponent
 
-@endsection
+@endslot
 
+@slot('header_details')
+@endslot
 
 {{-- Corps du bloc --}}
-@section('bloc_content')
 
   @if (count($contrats) < 1)
 
@@ -145,4 +149,4 @@
 
   @endif
 
-@endsection
+@endcomponent
