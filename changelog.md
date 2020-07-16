@@ -2,7 +2,8 @@
 
 ## 0.4
 * **Modification mineure :** Modification de l'intitulé 'CEC' en 'Chef de projet' sur les vues liées aux utilisateurs.
-* **Correctif :** Masquage du bouton 'Ajouter un client' pour les utilisateurs en mode lecture. 
+* **Modification mineure :** Affichage de la liste des clients par ordre alphabétique.
+* **Correctif :** Masquage du bouton 'Ajouter un client' pour les utilisateurs en mode lecture.
 * **Core :** Réorganisation des vues pour demeurer maintenable à terme.
 * **Core :** Création de composants pour le lissage de l'affichage des blocs et du bouton 'modifier'.
 
