@@ -19,7 +19,7 @@
         <label for="team">Équipe</label>
         <select name="team">
           <option value="web" {{($team == 'web') ? 'selected' : '' }}>Web</option>
-          <option value="cec" {{($team == 'cec') ? 'selected' : '' }}>CECs</option>
+          <option value="cec" {{($team == 'cec') ? 'selected' : '' }}>Chef de projet</option>
           <option value="consultant" {{($team == 'consultant') ? 'selected' : '' }}>Consultant</option>
         </select>
       </div>

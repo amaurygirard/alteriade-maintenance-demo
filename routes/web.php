@@ -67,7 +67,7 @@ Route::middleware(['App\Http\Middleware\CheckPermission'])->prefix('ajax')->grou
 
   // Formulaire de création d'un utilisateur
   Route::get('/user_add/{team}', function($team){
-    return view('user.add',[
+    return view('users.add',[
       'team' => $team,
     ]);
   })->name('ajax_add_user'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
