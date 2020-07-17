@@ -39,7 +39,8 @@
 @endphp
 
 @slot('header_title')
-  <strong>{{ $contrat->name }}</strong>
+  <strong>{{ $contrat->name }}
+  ({{$contrat->id}})</strong>
 
   {{-- Bouton de modification : uniquement pour l'équipe web --}}
   @if($is_web_team)
