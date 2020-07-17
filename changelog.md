@@ -1,8 +1,5 @@
 # Changelog
 
-### 0.4.1
-* **Correctif :** L'identifiant des contrats affiché dans blocs pour le debug était resté en place.
-
 ## 0.4
 * **Modification mineure :** Modification de l'intitulé 'CEC' en 'Chef de projet' sur les vues liées aux utilisateurs.
 * **Modification mineure :** Affichage de la liste des clients par ordre alphabétique.
