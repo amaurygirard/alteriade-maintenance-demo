@@ -2,27 +2,24 @@
 
   @section('form')
 
-    <form action="/client/create" method="post">
+    <form action="/projet/create" method="post">
       @csrf
 
+      <input type="hidden" name="client_id" value="{{$client_id}}">
+
       <div>
-        <label for="">Nom du client</label>
-        <input type="text" name="name" value="" placeholder="Tapez ici le nom du client">
+        <label for="name">Nom du projet</label>
+        <input type="text" name="name" id="name" value="" placeholder="Tapez ici le nom du projet">
       </div>
 
       <div>
-        <p class="label">Quels sont les membres de l'équipe en charge de ce client&nbsp;?</p>
-
         @foreach ($usermetas as $u)
           <input type="checkbox" name="users[]" id="users-{{$u->user_id}}" value="{{$u->user_id}}"><label for="users-{{$u->user_id}}">{{$u->first_name}} {{$u->last_name}}</label>
           <div class="clear"></div>
         @endforeach
-
       </div>
 
-      <div>
-        <input type="submit" value="Ajouter le client">
-      </div>
+      <input type="submit" value="Ajouter le projet">
 
     </form>
 

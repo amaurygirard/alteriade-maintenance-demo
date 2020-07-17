@@ -53,7 +53,7 @@
 
 		{{-- Liste des clients : composant appelé par défaut --}}
 		@section('client_list')
-			@component('components.client_list')
+			@component('client.list')
 			@endcomponent
 		@show
 

@@ -7,8 +7,8 @@
       @method('PATCH')
 
       <div>
-        <label for="">Nom du client</label>
-        <input type="text" name="name" value="{{$client->name}}" placeholder="Tapez ici le nom du client">
+        <label for="name">Nom du client</label>
+        <input type="text" name="name" id="name" value="{{$client->name}}" placeholder="Tapez ici le nom du client">
       </div>
 
       <div>

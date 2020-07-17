@@ -24,6 +24,8 @@
 
   @endif
 
-  <button id="client_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_client')}}" href="javascript:;">Ajouter un nouveau client</button>
+  @if(Auth::user() && Auth::user()->usermeta->team == "web")
+    <button id="client_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_client')}}" href="javascript:;">Ajouter un nouveau client</button>
+  @endif
 
 </aside>

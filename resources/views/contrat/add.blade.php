@@ -13,8 +13,8 @@
     </div>
 
     <div>
-        <label for="name">Date de début du contrat</label>
-        <input type="text" name="start_date" value="" placeholder="jj/mm/aaaa">
+        <label for="start_date">Date de début du contrat</label>
+        <input type="text" name="start_date" id="start_date" value="" placeholder="jj/mm/aaaa">
     </div>
 
     <div>
@@ -26,18 +26,18 @@
     </div>
 
     <div>
-        <label for="name">Nombre de minutes consacrées chaque mois aux sauvegardes et mises à jour</label>
-        <input type="text" name="minutes_mensuelles" value="0" placeholder="">
+        <label for="minutes_mensuelles">Nombre de minutes consacrées chaque mois aux sauvegardes et mises à jour</label>
+        <input type="text" name="minutes_mensuelles" id="minutes_mensuelles" value="0" placeholder="">
     </div>
 
     <div>
-        <label for="name">Si annuel : Date de fin du contrat</label>
-        <input type="text" name="end_date" value="" placeholder="jj/mm/aaaa">
+        <label for="end_date">Si annuel : Date de fin du contrat</label>
+        <input type="text" name="end_date" id="end_date" value="" placeholder="jj/mm/aaaa">
     </div>
 
     <div>
-        <label for="name">Si forfait : Nombre d'heures incluses dans le contrat</label>
-        <input type="text" name="minutes_in_forfait" value="" placeholder="">
+        <label for="minutes_in_forfait">Si forfait : Nombre d'heures incluses dans le contrat</label>
+        <input type="text" name="minutes_in_forfait" id="minutes_in_forfait" value="" placeholder="">
     </div>
 
     <div>

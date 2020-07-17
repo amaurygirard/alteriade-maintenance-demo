@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4
+* **Modification mineure :** Modification de l'intitulé 'CEC' en 'Chef de projet' sur les vues liées aux utilisateurs.
+* **Modification mineure :** Affichage de la liste des clients par ordre alphabétique.
+* **Correctif :** Masquage du bouton 'Ajouter un client' pour les utilisateurs en mode lecture.
+* **Correctif :** Correctif global sur les labels des champs de formulaire.
+* **Core :** Réorganisation des vues pour demeurer maintenable à terme.
+* **Core :** Création de composants pour le lissage de l'affichage des blocs et du bouton 'modifier'.
+
 ## 0.3
 * **Correctif :** Indication du solde négatif sur un contrat (précédemment indiqué comme du temps restant positif... seule la couleur grise permettant de savoir que le contrat était en réalité expiré).
 * **Correctif :** Affichage du type lisible ("readable_type") d'intervention sur la dernière intervention affichée sur les contrats présents en home.

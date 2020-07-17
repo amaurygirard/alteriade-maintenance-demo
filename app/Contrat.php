@@ -10,6 +10,11 @@ class Contrat extends Model
 {
 
     /**
+     * Indique le type d'objet
+     */
+    public $modelName = 'contrat';
+
+    /**
      * Attributs d'expiration du contrat
      * Ne sont pas enregistrés en BDD
      * Mais sont calculés par la méthode calculateExpiration()

@@ -24,6 +24,11 @@
 	}
 }
 
+ul.bloc_details_container {
+	list-style:none;
+	padding-left:0;
+}
+
 
 /* Contenu des blocs */
 
@@ -95,11 +100,11 @@
 	}
 
 	&.pictoed_clock:after {
-		background-image:url(../img/clock.png);
+		background-image:url(../images/clock.png);
 	}
 
 	&.pictoed_calendar:after {
-		background-image:url(../img/calendar.png);
+		background-image:url(../images/calendar.png);
 	}
 
 	&.pictoed_text:after {

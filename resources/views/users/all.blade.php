@@ -22,7 +22,7 @@
 			'collection' => $users_web,
 			'team' => 'web'
 		],
-		'CECs' => [
+		'Chefs de projet' => [
 			'collection' => $users_cec,
 			'team' => 'cec'
 		],
@@ -48,8 +48,8 @@
 	            {{-- - <a href="#" title="Modifier cet utilisateur">Modifier</a>
 	            @if($u->user_id != $user->id)
 	              - <a href="#" onclick="confirm('Voulez-vous vraiment supprimer l\'utilisateur {{$u->first_name}} {{$u->last_name}} ?');" title="Supprimer cet utilisateur">Supprimer</a>
-	            @endif
-	          </li> --}}
+	            @endif --}}
+					 	</li>
 
 	      @endforeach
 	    </ul>
