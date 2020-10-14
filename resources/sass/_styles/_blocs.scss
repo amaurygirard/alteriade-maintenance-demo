@@ -214,7 +214,7 @@ ul.bloc_details_container {
 }
 
 /* Bouton ajouter une intervention */
-#intervention_add {
+.intervention_add {
 	border-radius:50%;
 	border:1px solid $gris-stronger;
 	font-size:25px;
@@ -332,7 +332,7 @@ ul.bloc_details_container {
 			span.txtright { text-align:left; }
 		}
 
-		#intervention_add, .bloc_switcher {
+		.intervention_add, .bloc_switcher {
 			align-self:flex-end;
 		}
 	}

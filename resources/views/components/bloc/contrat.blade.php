@@ -52,7 +52,7 @@
 @slot('header_buttons')
     {{-- Bouton ajouter une intervention : uniquement pour l'équipe web --}}
     @if($is_web_team)
-      <button id="intervention_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_intervention', ['contrat_id' => $contrat->id])}}" href="javascript:;" title="Ajouter une intervention"><span>+</span></button>
+      <button class="intervention_add" data-fancybox data-type="ajax" data-src="{{route('ajax_add_intervention', ['contrat_id' => $contrat->id])}}" href="javascript:;" title="Ajouter une intervention"><span>+</span></button>
     @endif
 @endslot
 
