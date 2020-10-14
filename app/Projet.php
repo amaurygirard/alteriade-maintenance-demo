@@ -8,6 +8,11 @@ class Projet extends Model
 {
 
     /**
+     * Indique le type d'objet
+     */
+    public $modelName = 'projet';
+
+    /**
      * Relation avec les Utilisateurs
      */
     public function users() {

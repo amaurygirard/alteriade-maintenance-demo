@@ -37,14 +37,14 @@ Route::middleware(['App\Http\Middleware\CheckPermission'])->prefix('ajax')->grou
 
   // Formulaire de création d'un client
   Route::get('/client_add', function(){
-  return view('forms.client_add',[
+  return view('client.add',[
       'usermetas' => App\UserMeta::whereIn('team', ['consultant', 'cec'])->get()
   ]);
   })->name('ajax_add_client'); // le name permet de générer l'url depuis la vue avec route('ajax_add_client')
 
   // Formulaire de création d'un projet
   Route::get('/projet_add/{client_id}', function($client_id){
-    return view('forms.projet_add',[
+    return view('projet.add',[
       'client_id' => $client_id,
       'usermetas' => App\UserMeta::whereIn('team', ['consultant', 'cec'])->get()
     ]);
@@ -52,14 +52,14 @@ Route::middleware(['App\Http\Middleware\CheckPermission'])->prefix('ajax')->grou
 
   // Formulaire de création d'un contrat
   Route::get('/contrat_add/{projet_id}', function($projet_id){
-    return view('forms.contrat_add',[
+    return view('contrat.add',[
       'projet_id' => $projet_id
     ]);
   })->name('ajax_add_contrat'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
 
   // Formulaire de création d'une intervention
   Route::get('/intervention_add/{contrat_id}', function($contrat_id){
-    return view('forms.intervention_add',[
+    return view('intervention.add',[
       'contrat_id' => $contrat_id,
       'usermetas' => App\UserMeta::whereIn('team', ['web'])->get()
     ]);
@@ -67,7 +67,7 @@ Route::middleware(['App\Http\Middleware\CheckPermission'])->prefix('ajax')->grou
 
   // Formulaire de création d'un utilisateur
   Route::get('/user_add/{team}', function($team){
-    return view('forms.user_add',[
+    return view('users.add',[
       'team' => $team,
     ]);
   })->name('ajax_add_user'); // le name permet de générer l'url depuis la vue avec route('ajax_add_projet')
@@ -77,8 +77,8 @@ Route::middleware(['App\Http\Middleware\CheckPermission'])->prefix('ajax')->grou
    */
 
   // Formulaire de modification d'un client
-  Route::get('/projet_edit/{client_id}', function($client_id){
-    return view('forms.client_edit',[
+  Route::get('/client_edit/{client_id}', function($client_id){
+    return view('client.edit',[
       'client' => App\Client::find($client_id),
       'usermetas' => App\UserMeta::whereIn('team', ['consultant', 'cec'])->get()
     ]);
@@ -87,7 +87,7 @@ Route::middleware(['App\Http\Middleware\CheckPermission'])->prefix('ajax')->grou
 
   // Formulaire de modification d'un projet
   Route::get('/projet_edit/{projet_id}', function($projet_id){
-    return view('forms.projet_edit',[
+    return view('projet.edit',[
       'projet' => App\Projet::find($projet_id),
       'usermetas' => App\UserMeta::whereIn('team', ['consultant', 'cec'])->get()
     ]);
@@ -95,7 +95,7 @@ Route::middleware(['App\Http\Middleware\CheckPermission'])->prefix('ajax')->grou
 
   // Formulaire de modification d'un contrat
   Route::get('/contrat_edit/{contrat_id}', function($contrat_id){
-    return view('forms.contrat_edit',[
+    return view('contrat.edit',[
       'contrat_id' => $contrat_id,
       'contrat' => App\Contrat::find($contrat_id),
     ]);
@@ -103,7 +103,7 @@ Route::middleware(['App\Http\Middleware\CheckPermission'])->prefix('ajax')->grou
 
   // Formulaire de modification d'une intervention
   Route::get('/intervention_edit/{intervention_id}', function($intervention_id){
-    return view('forms.intervention_edit',[
+    return view('intervention.edit',[
       'intervention_id' => $intervention_id,
       'intervention' => App\Intervention::find($intervention_id),
       'usermetas' => App\UserMeta::whereIn('team', ['web'])->get()

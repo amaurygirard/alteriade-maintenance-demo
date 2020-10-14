@@ -8,18 +8,18 @@
     <input type="hidden" name="contrat_id" value="{{$contrat_id}}">
 
     <div>
-        <label for="name">Date de l'intervention</label>
-        <input type="text" name="date" value="" placeholder="jj/mm/aaaa">
+        <label for="date">Date de l'intervention</label>
+        <input type="text" name="date" id="date" value="" placeholder="jj/mm/aaaa">
     </div>
 
     <div>
-        <label for="name">Durée de l'intervention (en minutes)</label>
-        <input type="text" name="minutes_spent" value="" placeholder="">
+        <label for="minutes_spent">Durée de l'intervention (en minutes)</label>
+        <input type="text" name="minutes_spent" id="minutes_spent" value="" placeholder="">
     </div>
 
     <div>
-        <label for="name">Description</label>
-        <textarea name="description" rows="8" cols="80" placeholder="Décrivez ici brièvement l'intervention"></textarea>
+        <label for="description">Description</label>
+        <textarea name="description" id="description" rows="8" cols="80" placeholder="Décrivez ici brièvement l'intervention"></textarea>
     </div>
 
     <div>
@@ -31,8 +31,8 @@
     </div>
 
     <div>
-      <p class="label">Sélectionnez un type d'intervention</p>
-      <select name="type">
+      <label for="type">Sélectionnez un type d'intervention</label>
+      <select name="type" id="type">
         <option value="correctif">Correction de bug</option>
         <option value="update">Mise à jour</option>
         <option value="sauvegarde">Sauvegarde</option>

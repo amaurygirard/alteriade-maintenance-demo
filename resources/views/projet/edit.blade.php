@@ -8,7 +8,7 @@
 
       <div>
         <label for="name">Nom du projet</label>
-        <input type="text" name="name" value="{{$projet->name}}" placeholder="Tapez ici le nom du projet">
+        <input type="text" name="name" id="name" value="{{$projet->name}}" placeholder="Tapez ici le nom du projet">
       </div>
 
       <div>

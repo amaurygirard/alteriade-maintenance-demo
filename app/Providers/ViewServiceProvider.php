@@ -33,8 +33,8 @@ class ViewServiceProvider extends ServiceProvider
         // );
 
         // Using Closure based composers...
-        View::composer('components.client_list', function ($view) {
-            $view->with('clients', Client::all());
+        View::composer('client.list', function ($view) {
+            $view->with('clients', Client::orderBy('name')->get());
         });
 
         /*

@@ -69,3 +69,25 @@ h2, .h2-like {
 		font-weight:$weight-bold;
 	}
 }
+
+/* Responsive */
+@media (max-width:$large) {
+
+	body, main {
+		height:auto;
+	}
+
+	main {
+		display:block;
+	}
+
+	aside#clients,
+	section#main_section {
+		width:100%;
+	}
+
+	#client_list, #main_section {
+		overflow-y:auto;
+	}
+
+}
