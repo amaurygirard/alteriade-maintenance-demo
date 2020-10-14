@@ -277,6 +277,7 @@ ul.bloc_details_container {
 	padding:0;
 	height:33px;
 	width:33px;
+	min-width:33px;
 	color:transparent;
 	position:relative;
 	margin-left:1.5rem;
@@ -310,6 +311,50 @@ ul.bloc_details_container {
 
 	&:hover,&:active,&:focus {
 		background-color:$jaune;
+	}
+
+}
+
+@media (max-width:$medium) {
+
+	.bloc_header .bloc_header_container {
+		flex-wrap:wrap;
+
+		h3 {
+			width:100%;
+		}
+
+		> span {
+			margin:.5rem 0;
+			padding:0 1.5rem;
+			border-left:1px solid $color-base;
+
+			span.txtright { text-align:left; }
+		}
+
+		#intervention_add, .bloc_switcher {
+			align-self:flex-end;
+		}
+	}
+
+	.bloc_details_main {
+		display:block;
+
+		.flex-container {
+			display:block;
+		}
+
+		.txtright {
+			text-align:left;
+		}
+
+		span span {
+			margin-left:0;
+		}
+	}
+
+	.bloc_details_below {
+		padding-left:0;
 	}
 
 }
