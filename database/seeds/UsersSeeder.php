@@ -1,5 +1,6 @@
 <?php
 
+use App\UserMeta;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -7,10 +8,6 @@ use Illuminate\Support\Str;
 
 class UsersSeeder extends Seeder
 {
-    protected $teams = [
-        'web', 'cec', 'consultant',
-    ];
-
     protected $users = [
         [
             'first_name' => 'John',
@@ -75,7 +72,7 @@ class UsersSeeder extends Seeder
             /*
              * Check user data
              */
-            if( !isset($userMeta['first_name']) || !isset($userMeta['last_name']) || !isset($userMeta['team']) || !in_array($userMeta['team'], $this->teams) ) {
+            if( !isset($userMeta['first_name']) || !isset($userMeta['last_name']) || !isset($userMeta['team']) || !in_array($userMeta['team'], UserMeta::$teams) ) {
                 unset($this->users[$key]);
                 continue;
             }

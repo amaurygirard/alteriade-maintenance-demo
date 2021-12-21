@@ -14,6 +14,16 @@ class UserMeta extends Model
     protected $table = 'user_meta';
 
     /**
+     * The existing teams in app
+     * @var string[]
+     */
+    public static $teams = [
+        'web',
+        'cec',
+        'consultant'
+    ];
+
+    /**
      * Retrouve l'utilisateur dont il s'agit
      */
     public function user()
