@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Intervention extends Model
 {
-
     /**
      * Indique le type d'objet
      */
@@ -27,34 +26,40 @@ class Intervention extends Model
         'retrieved' => \App\Observers\InterventionObserver::class,
     ];
 
+    /**
+     * Liste des types valides
+     * @var string[]
+     */
+    public static $types = [
+        "correctif",
+        "update",
+        "sauvegarde",
+        "minor_change",
+        "assistance",
+        "new_feature",
+        "autre",
+    ];
+
+    /*
+     * Les valeurs enregistrées en BDD seront traduites sur le template
+     * selon la valeur associée à la clé
+     */
+    public static $readableTypes = [
+        'correctif' => 'Correction de bug',
+        'update' => 'Mise à jour',
+        'sauvegarde' => 'Sauvegarde',
+        'minor_change' => 'Modification mineure',
+        'assistance' => 'Assistance',
+        'new_feature' => 'Nouvelle fonctionnalité',
+        'autre' => 'Autre'
+    ];
 
     public function setReadableTypeAttribute($readable_type) {
         $this->readable_type = $readable_type;
     }
 
     public function findReadableType() {
-        /*
-         * Les valeurs enregistrées en BDD seront traduites sur le template
-         * selon la valeur associée à la clé
-         */
-        $cases = [
-          'correctif' => 'Correction de bug',
-          'update' => 'Mise à jour',
-          'sauvegarde' => 'Sauvegarde',
-          'minor_change' => 'Modification mineure',
-          'assistance' => 'Assistance',
-          'new_feature' => 'Nouvelle fonctionnalité',
-          'autre' => 'Autre'
-          // intégrer ici d'autres cas...
-        ];
-
-        if(isset($cases[$this->type])) {
-          return $cases[$this->type];
-        }
-        else {
-          return false;
-        }
-
+        return self::$readableTypes[$this->type] ?? false;
     }
 
     public function findAndSetReadableType() {
