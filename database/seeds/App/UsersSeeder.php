@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders\App;
+
 use App\UserMeta;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -67,12 +69,12 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        foreach($this->users as $key => &$userMeta) {
+        foreach ($this->users as $key => &$userMeta) {
 
             /*
              * Check user data
              */
-            if( !isset($userMeta['first_name']) || !isset($userMeta['last_name']) || !isset($userMeta['team']) || !in_array($userMeta['team'], UserMeta::$teams) ) {
+            if (!isset($userMeta['first_name']) || !isset($userMeta['last_name']) || !isset($userMeta['team']) || !in_array($userMeta['team'], UserMeta::$teams)) {
                 unset($this->users[$key]);
                 continue;
             }
@@ -82,26 +84,24 @@ class UsersSeeder extends Seeder
              */
             $username = Str::slug("{$userMeta['first_name']}{$userMeta['last_name']}", "");
 
-            if( isset($userMeta['email']) ) {
+            if (isset($userMeta['email'])) {
                 $email = $userMeta['email'];
                 unset($userMeta['email']);
-            }
-            else {
+            } else {
                 $email = "$username@example.com";
             }
 
-            if( isset($userMeta['password']) ) {
+            if (isset($userMeta['password'])) {
                 $password = $userMeta['password'];
                 unset($userMeta['password']);
-            }
-            else {
+            } else {
                 $password = Str::random(10);
             }
 
             /*
              * DB requests
              */
-            $carbon =  \Carbon\Carbon::now()->format('Y-m-d H:i:s');
+            $carbon = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
             $userData = [
                 'name' => $username,
                 'email' => $email,
@@ -110,7 +110,7 @@ class UsersSeeder extends Seeder
             ];
 
             // Email must be unique, so we might need to override old data
-            if( $user = DB::table('users')->select("id")->where('email', '=', $email)->first() ) {
+            if ($user = DB::table('users')->select("id")->where('email', '=', $email)->first()) {
                 $user_id = $user->id;
                 DB::table('users')->where('id', '=', $user_id)->update($userData);
             }
@@ -120,7 +120,7 @@ class UsersSeeder extends Seeder
             $user_id = $user_id ?? DB::table('users')->insertGetId($userData);
 
             // Then insert/update user_meta
-            if( $user_id ) {
+            if ($user_id) {
                 DB::table('user_meta')
                     ->where('user_id', '=', $user_id)
                     ->updateOrInsert($userMeta);

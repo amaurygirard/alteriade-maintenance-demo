@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders\App;
+
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -29,20 +31,19 @@ class ProjetsSeeder extends Seeder
             ->join('users', 'cu.user_id', '=', 'users.id')
             ->join('user_meta as um', 'users.id', '=', 'um.user_id')
             ->get()
-            ->groupBy('id')
-        ;
+            ->groupBy('id');
 
-        foreach($clients as $id => $data) {
+        foreach ($clients as $id => $data) {
 
             // Chaque client aura 1, 2 ou 3 projets créé(s)
-            $random = rand(1,3);
-            for($i = 0; $i < $random; $i++) {
+            $random = rand(1, 3);
+            for ($i = 0; $i < $random; $i++) {
 
                 // Crée le projet
                 $projet_id = DB::table('projets')
                     ->insertGetId([
                         'client_id' => $id,
-                        'name' => ucfirst($this->faker->words(3,true)),
+                        'name' => ucfirst($this->faker->words(3, true)),
                         'created_at' => $carbon,
                         'updated_at' => $carbon,
                     ]);
@@ -50,11 +51,11 @@ class ProjetsSeeder extends Seeder
                 // Prépare la relation avec un utilisateur de chacune des deux équipes 'cec' et 'consultant'
                 $teams = ['cec', 'consultant'];
                 $users = [];
-                foreach($data as $user) {
+                foreach ($data as $user) {
 
                     $team = $user->user_team ?? null;
                     $user_id = $user->user_id ?? null;
-                    if( $user_id && $team && ($key = array_search($team, $teams)) !== false ) {
+                    if ($user_id && $team && ($key = array_search($team, $teams)) !== false) {
                         unset($teams[$key]); // pour ne garder qu'un utilisateur par équipe
 
                         $users[] = [
@@ -64,19 +65,18 @@ class ProjetsSeeder extends Seeder
                             'updated_at' => $carbon,
                         ];
 
-                    }
-                    else {
+                    } else {
                         continue;
                     }
 
-                    if( !count($teams) ) {
+                    if (!count($teams)) {
                         break;
                     }
 
                 }
 
                 // Insère les données dans la table
-                if( count($users) ) {
+                if (count($users)) {
                     DB::table('projet_user')->insert($users);
                 }
 

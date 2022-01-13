@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders\App;
+
 use App\Services\UserService;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,8 +19,8 @@ class ClientsSeeder extends Seeder
         $this->userService = $userService;
 
         // Load users ids by team for seeder's use
-        $this->consultants = $this->userService->getUsersIdsByTeam( 'consultant' );
-        $this->cecs = $this->userService->getUsersIdsByTeam( 'cec' );
+        $this->consultants = $this->userService->getUsersIdsByTeam('consultant');
+        $this->cecs = $this->userService->getUsersIdsByTeam('cec');
     }
 
     /**
@@ -48,7 +50,7 @@ class ClientsSeeder extends Seeder
     {
         $created_at = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
 
-        foreach( $this->names as $name ) {
+        foreach ($this->names as $name) {
 
             // Client creation
             $id = DB::table('clients')->insertGetId([
@@ -58,7 +60,7 @@ class ClientsSeeder extends Seeder
             ]);
 
             // Client relationship with users
-            if( $id ) {
+            if ($id) {
 
                 $common = [
                     'client_id' => $id,
@@ -68,8 +70,8 @@ class ClientsSeeder extends Seeder
 
                 // Le client doit être associé à un consultant et un CEC
                 DB::table('client_user')->insert([
-                    array_merge($common, [ 'user_id' => $this->consultants->random(1)[0] ]),
-                    array_merge($common, [ 'user_id' => $this->cecs->random(1)[0] ]),
+                    array_merge($common, ['user_id' => $this->consultants->random(1)[0]]),
+                    array_merge($common, ['user_id' => $this->cecs->random(1)[0]]),
                 ]);
 
             }

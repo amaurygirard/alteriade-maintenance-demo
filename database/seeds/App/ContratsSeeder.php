@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders\App;
+
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -45,7 +47,7 @@ class ContratsSeeder extends Seeder
             ->toArray();
 
         $contrats = [];
-        foreach( $projets_ids as $i => $id ) {
+        foreach ($projets_ids as $i => $id) {
 
             // Par défaut, contrat annuel
             $data = [
@@ -61,7 +63,7 @@ class ContratsSeeder extends Seeder
             ];
 
             // Un contrat sur deux de type forfaitaire
-            if($i % 2 === 0) {
+            if ($i % 2 === 0) {
                 $hours_in_forfait = $this->getRandomItemFromArray(self::$forfait_durations);
                 $data['type'] = 'forfait';
                 $data['minutes_in_forfait'] = $hours_in_forfait * 60;
