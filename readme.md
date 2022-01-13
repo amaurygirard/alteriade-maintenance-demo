@@ -4,11 +4,11 @@
 Ce projet a été développé pour le besoin de l'agence web [alteriade](https://alteriade.fr/) : gérer les contrats de maintenance courant pour les projets web de ses différents clients.
 
 Le projet utilise entre autres les frameworks et librairies suivantes :
-* [Laravel](https://laravel.com/) (5.8) pour le back-end,
+* [Laravel](https://laravel.com/) (6.20) pour le back-end,
 * [Knacss](https://www.knacss.com/) (7.0) pour CSS (Sass),
 * [jQuery](https://jquery.com/).
 
-La version de démonstration est accessible ici : https://maintenance-demo.alteriade.fr/.
+La version de démonstration est accessible ici : https://amaurygirard.alwaysdata.net/.
 * Connexion en mode lecture :
   * ID : johnsmith@example.com
   * Mot de passe : johnsmith
