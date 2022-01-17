@@ -55,7 +55,7 @@ class ContratsSeeder extends Seeder
                 'type' => 'annuel',
                 'name' => $this->getRandomItemFromArray(self::$contrat_names),
                 'start_date' => ($start_date = $this->faker->dateTimeBetween('-2 years'))->format('Y-m-d H:i:s'),
-                'end_date' => (new DateTime())->setTimestamp(strtotime('+1 year', $start_date->getTimestamp()))->format('Y-m-d H:i:s'),
+                'end_date' => (new \DateTime())->setTimestamp(strtotime('+1 year', $start_date->getTimestamp()))->format('Y-m-d H:i:s'),
                 'minutes_mensuelles' => 30,
                 'minutes_in_forfait' => null,
                 'created_at' => $carbon,
