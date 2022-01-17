@@ -34,7 +34,7 @@ Les utilisateurs sont répartis en trois équipes :
 Les consultants et CEC sont liés à chaque client et/ou projet qu'ils ont dans leur portefeuille. Un membre (ou plus) de l'équipe web est lié à une intervention.
 
 ## Évolutivité
-Cet outil est pour l'instant pourvu de fonctionnalités assez basiques, mais il est appelé à évoluer rapidement, avec notamment :
+Cet outil est pour l'instant pourvu de fonctionnalités assez basiques, mais il est appelé à évoluer, avec notamment :
 * la configuration de l'envoi d'e-mails (qui rendra notamment possible la réinitialisation du mot de passe),
 * l'envoi de notifications par e-mail lors du cycle de vie d'un contrat (création, intervention, expiration proche...),
 * l'ajout d'observations sur les contrats pour faciliter la gestion collective.
