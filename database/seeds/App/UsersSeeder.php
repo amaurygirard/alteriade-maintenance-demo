@@ -114,16 +114,16 @@ class UsersSeeder extends Seeder
                 $user_id = $user->id;
                 DB::table('users')->where('id', '=', $user_id)->update($userData);
             }
-
-            // Else, create a whole new user
-            $userData['created_at'] = $carbon;
-            $user_id = $user_id ?? DB::table('users')->insertGetId($userData);
+            else {
+                // Else, create a whole new user
+                $userData['created_at'] = $carbon;
+                $user_id = DB::table('users')->insertGetId($userData);
+            }
 
             // Then insert/update user_meta
             if ($user_id) {
                 DB::table('user_meta')
-                    ->where('user_id', '=', $user_id)
-                    ->updateOrInsert($userMeta);
+                    ->updateOrInsert(['user_id' => $user_id], $userMeta);
             }
 
         }
